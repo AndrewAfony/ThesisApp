@@ -63,7 +63,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Notifications"
+                android:contentDescription="@string/notifications"
                 android:padding="8dp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
@@ -164,6 +164,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_timetable"
+            tools:listitem="@layout/timetable_item_class"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
