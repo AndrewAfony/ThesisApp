@@ -1,6 +1,6 @@
 package andrewafony.thesis.application.feature_main.presentation
 
-import andrewafony.thesis.application.BaseFragment
+import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentNotificationsBinding
 import android.view.LayoutInflater
 

@@ -1,4 +1,4 @@
-package andrewafony.thesis.application
+package andrewafony.thesis.application.core
 
 import android.os.Bundle
 import android.view.LayoutInflater

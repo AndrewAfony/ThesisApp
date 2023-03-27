@@ -1,13 +1,11 @@
 package andrewafony.thesis.application.feature_main.presentation
 
-import andrewafony.thesis.application.BaseFragment
+import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentHomeBinding
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
