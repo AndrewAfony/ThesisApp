@@ -1,21 +1,21 @@
 package andrewafony.thesis.application
 
-import andrewafony.thesis.application.feature_main.presentation.FragmentHome
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
+    private val mainViewModel by viewModels<MainViewModel> { (application as ViewModelFactoryProvider).provide() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<FragmentHome>(R.id.fragment_container_view)
-            }
+        mainViewModel.init(savedInstanceState == null)
+
+        mainViewModel.observeNavigation(this) { navigation ->
+            navigation.navigate(supportFragmentManager)
         }
     }
 }

@@ -1,5 +1,7 @@
 package andrewafony.thesis.application.di
 
+import andrewafony.thesis.application.MainComponent
+import andrewafony.thesis.application.MainViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
@@ -26,7 +28,7 @@ interface DependencyContainer {
     ) : DependencyContainer {
 
         override fun <T> component(clazz: Class<T>): Component = when (clazz) {
-            // todo
+            MainViewModel::class.java -> MainComponent()
             else -> dependencyContainer.component(clazz)
         }
     }
