@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <navigation
+        android:id="@+id/home"
+        app:startDestination="@id/fragmentHome">
+        <fragment
+            android:id="@+id/fragmentHome"
+            android:name="andrewafony.thesis.application.feature_main.presentation.FragmentHome"
+            android:label="FragmentHome">
+        </fragment>
+        <fragment
+            android:id="@+id/fragmentNotifications"
+            android:name="andrewafony.thesis.application.feature_main.presentation.FragmentNotifications"
+            android:label="FragmentNotifications" />
+    </navigation>
+    <navigation
+        android:id="@+id/search"
+        app:startDestination="@id/fragmentSearch">
+        <fragment
+            android:id="@+id/fragmentSearch"
+            android:name="andrewafony.thesis.application.feature_search.presentation.FragmentSearch"
+            android:label="FragmentSearch" />
+    </navigation>
+    <navigation
+        android:id="@+id/news"
+        app:startDestination="@id/fragmentNews">
+        <fragment
+            android:id="@+id/fragmentNews"
+            android:name="andrewafony.thesis.application.feature_news.presentation.FragmentNews"
+            android:label="FragmentNews" />
+    </navigation>
+    <navigation
+        android:id="@+id/deadlines"
+        app:startDestination="@id/fragmentDeadlines">
+        <fragment
+            android:id="@+id/fragmentDeadlines"
+            android:name="andrewafony.thesis.application.feature_deadlines.presentation.FragmentDeadlines"
+            android:label="FragmentDeadlines" />
+    </navigation>
+</navigation>

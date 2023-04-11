@@ -41,7 +41,7 @@ class MainViewModelTest {
 
 private class TestNavigationCommunication: NavigationCommunication {
 
-    var navigation: Navigation = Navigation.Add(Screen.Home)
+    var navigation: Navigation = Navigation.Open(Screen.Home)
     var screen: Screen = Screen.Home
     var count = 0
 

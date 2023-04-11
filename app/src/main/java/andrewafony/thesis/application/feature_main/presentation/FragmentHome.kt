@@ -1,5 +1,7 @@
 package andrewafony.thesis.application.feature_main.presentation
 
+import andrewafony.thesis.application.Navigation
+import andrewafony.thesis.application.Screen
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentHomeBinding
 import android.graphics.drawable.GradientDrawable
@@ -15,6 +17,10 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.notification.setOnClickListener {
+            mainViewModel.navigate(Navigation.Open(Screen.Notifications))
+        }
 
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetTimetable)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED

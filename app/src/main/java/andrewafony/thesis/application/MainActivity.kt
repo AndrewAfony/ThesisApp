@@ -1,21 +1,33 @@
 package andrewafony.thesis.application
 
+import andrewafony.thesis.application.databinding.ActivityMainBinding
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
     private val mainViewModel by viewModels<MainViewModel> { (application as ViewModelFactoryProvider).provide() }
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         mainViewModel.init(savedInstanceState == null)
 
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+
         mainViewModel.observeNavigation(this) { navigation ->
-            navigation.navigate(supportFragmentManager)
+            navigation.navigate(navHost.navController)
         }
+
+        binding.bottomNavigation.setupWithNavController(navHost.navController)
     }
+
 }

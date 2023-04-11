@@ -11,7 +11,7 @@ class MainViewModel(
 
     fun init(isFirstRun: Boolean) {
         if (isFirstRun) {
-            navigationCommunication.map(Navigation.Replace(Screen.Home))
+
         }
     }
 
