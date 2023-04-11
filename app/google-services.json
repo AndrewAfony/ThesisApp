@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "854949072457",
+    "firebase_url": "https://thesis-application-90a64-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "thesis-application-90a64",
+    "storage_bucket": "thesis-application-90a64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854949072457:android:ec5957c2a77245d374f998",
+        "android_client_info": {
+          "package_name": "andrewafony.thesis.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854949072457-smm11jbm4thjnh7mkh5lbdh0go2qn93o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq31W3Jj3T-QL1-Td1EHh4tks31lGUF2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854949072457-smm11jbm4thjnh7mkh5lbdh0go2qn93o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
