@@ -2,7 +2,7 @@ package andrewafony.thesis.application.core
 
 interface BaseItem {
 
-    fun id(): String
+    fun id(): Int
 
     fun content(): String
 }
