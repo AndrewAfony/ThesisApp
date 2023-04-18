@@ -23,7 +23,7 @@ class FragmentDetailClassInfo: BaseFragment<FragmentDetailClassInfoBinding>() {
         val adapter = TestAdapter(this)
         viewPager = binding.viewPager
         viewPager.adapter = adapter
-        TabLayoutMediator(binding.tabLayout, viewPager) {tab, position ->
+        TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
             if (position == 0) tab.text = "Info"
             else tab.text = "Deadlines"
         }.attach()

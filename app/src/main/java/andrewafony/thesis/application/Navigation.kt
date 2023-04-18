@@ -1,6 +1,7 @@
 package andrewafony.thesis.application
 
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.navOptions
 
 interface Navigation {
@@ -16,7 +17,15 @@ interface Navigation {
 
     data class Open(private val screen: Screen) : Abstract(screen) {
         override fun navigate(navController: NavController) {
-            navController.navigate(screen.fragment)
+            navController.navigate(
+                screen.fragment, null,
+                NavOptions.Builder()
+                    .setEnterAnim(R.anim.enter_from_right)
+                    .setExitAnim(R.anim.exit_to_left)
+                    .setPopExitAnim(R.anim.exit_to_right)
+                    .setPopEnterAnim(R.anim.enter_from_left)
+                    .build()
+            )
         }
     }
 
