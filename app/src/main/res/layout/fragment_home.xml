@@ -164,7 +164,7 @@
         android:alpha="0.0"
         android:background="@color/black" />
 
-        <androidx.core.widget.NestedScrollView
+        <FrameLayout
             android:id="@+id/bottom_sheet_timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -173,24 +173,25 @@
             app:behavior_peekHeight="300dp"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/timetable_loading_animation"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                tools:visibility="visible"
+                android:layout_gravity="center|top"
+                android:elevation="5dp"
+                android:layout_marginTop="100dp"
+                app:lottie_rawRes="@raw/timetable_loading" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_timetable"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="?attr/actionBarSize"
                 tools:listitem="@layout/timetable_item_class" />
 
-        </androidx.core.widget.NestedScrollView>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/timetable_loading_animation"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        tools:visibility="gone"
-        android:elevation="5dp"
-        android:layout_marginBottom="140dp"
-        android:layout_gravity="bottom|center"
-        app:lottie_rawRes="@raw/timetable_loading" />
+        </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package andrewafony.thesis.application.feature_home.data.cloud
 
 import andrewafony.thesis.application.feature_home.data.TimetableItemData
+import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.GeoPoint
@@ -34,6 +35,7 @@ interface FirestoreService {
                 .await()
 
             ref.documents.forEach {
+                Log.d("MyHelper", "gelClasses: $it")
                 val teacherRef = it.get("employee") as DocumentReference
                 val teacherName = teacherRef.get().await().get("name") as String
                 resultList.add(TimetableItemData(
@@ -54,8 +56,4 @@ interface FirestoreService {
             return TimetableItemData("",Date(), "", "", "", GeoPoint(12.3, 23.3), "")
         }
     }
-}
-
-fun String.createDate() : String {
-    return this.substringAfter("(").substringBefore(",")
 }
