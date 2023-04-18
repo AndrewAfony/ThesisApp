@@ -8,4 +8,8 @@
     <string name="search">Search</string>
     <string name="news">News</string>
     <string name="deadlines">Deadlines</string>
+
+    <!-- Timetable Item   -->
+    <string name="offline">Offline</string>
+    <string name="online">Online</string>
 </resources>

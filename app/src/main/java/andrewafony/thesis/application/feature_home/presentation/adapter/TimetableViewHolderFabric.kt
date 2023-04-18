@@ -1,13 +1,10 @@
 package andrewafony.thesis.application.feature_home.presentation.adapter
 
+import andrewafony.thesis.application.R
 import andrewafony.thesis.application.core.adapter.BaseViewHolder
 import andrewafony.thesis.application.core.adapter.ViewHolderFabric
 import andrewafony.thesis.application.databinding.TimetableItemClassBinding
 import andrewafony.thesis.application.feature_home.presentation.TimetableItemUi
-import android.content.Intent
-import android.net.Uri
-import android.opengl.Visibility
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,26 +22,29 @@ class TimetableViewHolderFabric(
 
 class TimetableClassViewHolder(
     private val binding: TimetableItemClassBinding,
-    private val chipClickHandler: TimetableChipClickHandler
+    private val clickHandler: TimetableChipClickHandler
 ) : BaseViewHolder<TimetableItemUi>(binding.root) {
 
     override fun bind(data: TimetableItemUi) {
         binding.run {
+            root.setOnClickListener {
+                clickHandler.onClassClick(data.id)
+            }
             disciplineName.text = data.name
             time.text = "${data.startTime} - ${data.endTime}"
             chipType.text = data.type.replaceFirstChar { it.uppercase() }
             if (data.link.isBlank()) {
                 chipPlace.apply {
-                    text = "Offline"
+                    text = context.getString(R.string.offline)
                     setOnClickListener {
-                        chipClickHandler.onPlaceClick(data.place)
+                        clickHandler.onPlaceClick(data.place)
                     }
                 }
             } else {
                 chipPlace.apply {
-                    text = "Online"
+                    text = context.getString(R.string.online)
                     setOnClickListener {
-                        chipClickHandler.onLinkClick(data.link)
+                        clickHandler.onLinkClick(data.link)
                     }
                 }
             }
@@ -70,12 +70,13 @@ class TimetableClassViewHolder(
                 month.visibility = View.INVISIBLE
                 dayOfWeek.visibility = View.INVISIBLE
             }
-
         }
     }
 }
 
 interface TimetableChipClickHandler {
+
+    fun onClassClick(classId: String)
 
     fun onPlaceClick(geoPoint: GeoPoint)
 
