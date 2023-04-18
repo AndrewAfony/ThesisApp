@@ -27,6 +27,10 @@ class FragmentDetailClassInfo: BaseFragment<FragmentDetailClassInfoBinding>() {
             if (position == 0) tab.text = "Info"
             else tab.text = "Deadlines"
         }.attach()
+
+        binding.toolbar.setNavigationOnClickListener {
+            mainViewModel.navigateBack()
+        }
     }
 }
 

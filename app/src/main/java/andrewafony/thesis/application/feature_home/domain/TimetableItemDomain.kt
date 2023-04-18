@@ -61,7 +61,9 @@ data class TimetableItemDomain(
                     isFirstClass = false
                 }
 
-                return TimetableItemUi(id,
+                // todo (order)
+                return TimetableItemUi(
+                    id,
                     dateDay,
                     month,
                     weekDay,
