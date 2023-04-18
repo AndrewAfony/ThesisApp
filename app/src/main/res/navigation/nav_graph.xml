@@ -11,11 +11,18 @@
             android:id="@+id/fragmentHome"
             android:name="andrewafony.thesis.application.feature_home.presentation.FragmentHome"
             android:label="FragmentHome">
+            <action
+                android:id="@+id/action_fragmentHome_to_fragmentDetailClassInfo"
+                app:destination="@id/fragmentDetailClassInfo" />
         </fragment>
         <fragment
             android:id="@+id/fragmentNotifications"
             android:name="andrewafony.thesis.application.feature_home.presentation.FragmentNotifications"
             android:label="FragmentNotifications" />
+        <fragment
+            android:id="@+id/fragmentDetailClassInfo"
+            android:name="andrewafony.thesis.application.feature_home.presentation.FragmentDetailClassInfo"
+            android:label="FragmentDetailClassInfo" />
     </navigation>
     <navigation
         android:id="@+id/search"
@@ -41,4 +48,5 @@
             android:name="andrewafony.thesis.application.feature_deadlines.presentation.FragmentDeadlines"
             android:label="FragmentDeadlines" />
     </navigation>
+
 </navigation>

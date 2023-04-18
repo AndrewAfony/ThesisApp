@@ -41,6 +41,10 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
             // todo (вынести в отдельный класс)
 
+            override fun onClassClick(classId: String) {
+                mainViewModel.navigate(Navigation.Open(Screen.DetailClassInfo))
+            }
+
             override fun onPlaceClick(geoPoint: GeoPoint) {
                 val geo = Uri.parse("geo:${geoPoint.latitude},${geoPoint.longitude}?z=15")
                 val mapIntent = Intent(Intent.ACTION_VIEW, geo)

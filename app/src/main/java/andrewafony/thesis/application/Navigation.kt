@@ -64,6 +64,11 @@ interface Screen {
             get() = R.id.fragmentNotifications
     }
 
+    object DetailClassInfo : Screen {
+        override val fragment: Int
+            get() = R.id.fragmentDetailClassInfo
+    }
+
 //    object Login : Screen {
 //        override val fragment: Class<out Fragment>
 //            get() = FragmentLogin::class.java

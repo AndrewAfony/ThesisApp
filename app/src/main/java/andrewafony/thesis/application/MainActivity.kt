@@ -3,6 +3,7 @@ package andrewafony.thesis.application
 import andrewafony.thesis.application.databinding.ActivityMainBinding
 import andrewafony.thesis.application.di.ViewModelFactory
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -28,6 +29,17 @@ class MainActivity : AppCompatActivity(), ViewModelFactoryProvider {
         }
 
         binding.bottomNavigation.setupWithNavController(navHost.navController)
+
+        navHost.navController.addOnDestinationChangedListener { _, dest, _ ->
+            when(dest.id) {
+                R.id.fragmentHome, R.id.fragmentSearch, R.id.fragmentNews, R.id.fragmentDeadlines -> {
+                    binding.bottomNavigation.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.bottomNavigation.visibility = View.GONE
+                }
+            }
+        }
     }
 
     override fun provide(): ViewModelFactory {
