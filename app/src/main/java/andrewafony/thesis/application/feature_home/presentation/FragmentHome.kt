@@ -1,23 +1,31 @@
-package andrewafony.thesis.application.feature_main.presentation
+package andrewafony.thesis.application.feature_home.presentation
 
 import andrewafony.thesis.application.Navigation
 import andrewafony.thesis.application.Screen
+import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentHomeBinding
-import andrewafony.thesis.application.feature_main.presentation.adapter.TimetableAdapter
-import andrewafony.thesis.application.feature_main.presentation.adapter.TimetableViewHolderFabric
-import andrewafony.thesis.application.feature_main.presentation.adapter.TopPullIndicatorDecorator
-import android.graphics.Color
+import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableAdapter
+import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableChipClickHandler
+import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableViewHolderFabric
+import andrewafony.thesis.application.feature_home.presentation.adapter.TopPullIndicatorDecorator
+import android.content.Intent
 import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.firestore.GeoPoint
 
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
+
+    private val viewModel by viewModels<HomeViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
 
     override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding =
         FragmentHomeBinding::inflate
@@ -29,7 +37,29 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             mainViewModel.navigate(Navigation.Open(Screen.Notifications))
         }
 
-        val timetableAdapter = TimetableAdapter(TimetableViewHolderFabric())
+        val timetableAdapter = TimetableAdapter(TimetableViewHolderFabric(object : TimetableChipClickHandler {
+
+            // todo (вынести в отдельный класс)
+
+            override fun onPlaceClick(geoPoint: GeoPoint) {
+                val geo = Uri.parse("geo:${geoPoint.latitude},${geoPoint.longitude}?z=15")
+                val mapIntent = Intent(Intent.ACTION_VIEW, geo)
+                try {
+                    startActivity(mapIntent)
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onLinkClick(link: String) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                try {
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }))
 
         binding.rvTimetable.apply {
             adapter = timetableAdapter
@@ -38,19 +68,11 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             addItemDecoration(TopPullIndicatorDecorator())
         }
 
-        timetableAdapter.map(
-            listOf(
-                TimetableItemUi(1, "Test1", "12:00-13:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-                TimetableItemUi(2, "Test2", "13:00-14:00"),
-            )
-        )
+        viewModel.init(savedInstanceState == null)
+
+        viewModel.observe(this) {
+            timetableAdapter.map(it)
+        }
 
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetTimetable)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED

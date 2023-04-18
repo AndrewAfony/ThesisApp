@@ -1,4 +1,4 @@
-package andrewafony.thesis.application.feature_main.presentation.adapter
+package andrewafony.thesis.application.feature_home.presentation.adapter
 
 import android.content.res.Resources
 import android.graphics.*

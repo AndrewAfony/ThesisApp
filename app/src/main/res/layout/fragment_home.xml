@@ -10,14 +10,16 @@
     android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:padding="1dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +57,8 @@
             android:id="@+id/notification"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="?android:attr/colorBackground"
             app:cardCornerRadius="26dp"
             app:cardElevation="2dp"
@@ -79,6 +83,7 @@
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             app:cardBackgroundColor="@color/white"
@@ -92,6 +97,7 @@
             android:id="@+id/cardView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             app:cardBackgroundColor="@color/white"
@@ -107,6 +113,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
@@ -119,6 +126,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView3"

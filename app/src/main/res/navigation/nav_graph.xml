@@ -9,12 +9,12 @@
         app:startDestination="@id/fragmentHome">
         <fragment
             android:id="@+id/fragmentHome"
-            android:name="andrewafony.thesis.application.feature_main.presentation.FragmentHome"
+            android:name="andrewafony.thesis.application.feature_home.presentation.FragmentHome"
             android:label="FragmentHome">
         </fragment>
         <fragment
             android:id="@+id/fragmentNotifications"
-            android:name="andrewafony.thesis.application.feature_main.presentation.FragmentNotifications"
+            android:name="andrewafony.thesis.application.feature_home.presentation.FragmentNotifications"
             android:label="FragmentNotifications" />
     </navigation>
     <navigation

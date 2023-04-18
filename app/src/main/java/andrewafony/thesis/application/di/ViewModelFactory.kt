@@ -2,6 +2,8 @@ package andrewafony.thesis.application.di
 
 import andrewafony.thesis.application.MainComponent
 import andrewafony.thesis.application.MainViewModel
+import andrewafony.thesis.application.feature_home.HomeComponent
+import andrewafony.thesis.application.feature_home.presentation.HomeViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
@@ -29,6 +31,7 @@ interface DependencyContainer {
 
         override fun <T> component(clazz: Class<T>): Component = when (clazz) {
             MainViewModel::class.java -> MainComponent()
+            HomeViewModel::class.java -> HomeComponent()
             else -> dependencyContainer.component(clazz)
         }
     }

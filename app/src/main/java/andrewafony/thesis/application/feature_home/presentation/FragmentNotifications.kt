@@ -1,4 +1,4 @@
-package andrewafony.thesis.application.feature_main.presentation
+package andrewafony.thesis.application.feature_home.presentation
 
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentNotificationsBinding
