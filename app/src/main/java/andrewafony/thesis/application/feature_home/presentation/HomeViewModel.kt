@@ -7,8 +7,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HomeViewModel(
     private val interactor: TimetableInteractor,
@@ -16,7 +14,9 @@ class HomeViewModel(
     private val dispatchers: Dispatchers
 ): ViewModel() {
 
-    fun init(isFirstRun: Boolean) {
+    fun init(
+        isFirstRun: Boolean,
+    ) {
         if (isFirstRun) {
             dispatchers.launchBackground(viewModelScope) {
                 val res = interactor.getAllClasses()

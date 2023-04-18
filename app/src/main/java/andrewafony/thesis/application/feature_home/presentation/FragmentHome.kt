@@ -71,6 +71,8 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         viewModel.init(savedInstanceState == null)
 
         viewModel.observe(this) {
+            binding.timetableLoadingAnimation.cancelAnimation()
+            binding.timetableLoadingAnimation.visibility = View.GONE
             timetableAdapter.map(it)
         }
 
