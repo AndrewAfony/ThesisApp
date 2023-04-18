@@ -21,8 +21,7 @@ class MainActivity : AppCompatActivity(), ViewModelFactoryProvider {
 
         mainViewModel.init(savedInstanceState == null)
 
-        val navHost =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
         mainViewModel.observeNavigation(this) { navigation ->
             navigation.navigate(navHost.navController)
