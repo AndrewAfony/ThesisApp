@@ -22,7 +22,7 @@ class TimetableViewHolderFabric(
 
 class TimetableClassViewHolder(
     private val binding: TimetableItemClassBinding,
-    private val clickHandler: TimetableChipClickHandler,
+    private val clickHandler: TimetableChipClickHandler
 ) : BaseViewHolder<TimetableItemUi>(binding.root) {
 
     override fun bind(data: TimetableItemUi) {
@@ -34,7 +34,6 @@ class TimetableClassViewHolder(
             disciplineName.text = data.name
             time.text = "${data.startTime} - ${data.endTime}"
             chipType.text = data.type.replaceFirstChar { it.uppercase() }
-            if (!data.isFirstPosition) dateFrame.visibility = View.INVISIBLE
             if (data.link.isBlank()) {
                 chipPlace.apply {
                     text = context.getString(R.string.offline)
@@ -72,6 +71,7 @@ class TimetableClassViewHolder(
                 month.visibility = View.INVISIBLE
                 dayOfWeek.visibility = View.INVISIBLE
             }
+            dateFrame.visibility = if (adapterPosition == 0) View.VISIBLE else View.INVISIBLE
         }
     }
 }

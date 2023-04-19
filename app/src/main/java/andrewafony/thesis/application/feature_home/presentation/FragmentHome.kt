@@ -59,7 +59,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
                 try {
                     startActivity(intent)
                 } catch (e: Exception) {
-                    Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error link: $link", Toast.LENGTH_SHORT).show()
                 }
             }
         }))
