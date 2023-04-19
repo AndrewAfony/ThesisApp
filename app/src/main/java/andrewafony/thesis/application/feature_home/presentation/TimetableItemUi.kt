@@ -16,10 +16,11 @@ data class TimetableItemUi(
     val name: String,
     val place: GeoPoint,
     val type: String,
-    val isFirstClass: Boolean
+    val isFirstClass: Boolean,
+    val order: String
 ) : BaseItem {
 
     override fun id(): String = id
 
-    override fun content(): String = "$name$dateDay$dateMonth$dateWeekDay$startTime$endTime$employee$link$place$type"
+    override fun content(): String = "$name$dateDay$dateMonth$dateWeekDay$startTime$endTime$employee$link$place$type$order"
 }

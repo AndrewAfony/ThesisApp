@@ -61,7 +61,8 @@ data class TimetableItemDomain(
                     isFirstClass = false
                 }
 
-                // todo (order)
+                val order = startTime.order()
+
                 return TimetableItemUi(
                     id,
                     dateDay,
@@ -74,7 +75,22 @@ data class TimetableItemDomain(
                     name,
                     place,
                     type,
-                    isFirstClass)
+                    isFirstClass,
+                    order
+                )
+            }
+
+            private fun String.order(): String {
+                return when(this) {
+                    "08:00" -> "1"
+                    "09:30" -> "2"
+                    "11:10" -> "3"
+                    "13:00" -> "4"
+                    "14:40" -> "5"
+                    "16:20" -> "6"
+                    "18:10" -> "7"
+                    else -> "1"
+                }
             }
         }
     }
