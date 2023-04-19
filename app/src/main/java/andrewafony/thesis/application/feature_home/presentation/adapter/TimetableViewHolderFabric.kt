@@ -34,6 +34,7 @@ class TimetableClassViewHolder(
             disciplineName.text = data.name
             time.text = "${data.startTime} - ${data.endTime}"
             chipType.text = data.type.replaceFirstChar { it.uppercase() }
+            if (!data.isFirstPosition) dateFrame.visibility = View.INVISIBLE
             if (data.link.isBlank()) {
                 chipPlace.apply {
                     text = context.getString(R.string.offline)

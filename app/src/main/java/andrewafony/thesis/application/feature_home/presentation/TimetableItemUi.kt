@@ -17,7 +17,8 @@ data class TimetableItemUi(
     val place: GeoPoint,
     val type: String,
     val isFirstClass: Boolean,
-    val order: String
+    val order: String,
+    val isFirstPosition: Boolean
 ) : BaseItem {
 
     override fun id(): String = id

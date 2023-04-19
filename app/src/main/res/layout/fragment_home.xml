@@ -164,7 +164,7 @@
         android:alpha="0.0"
         android:background="@color/black" />
 
-        <FrameLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_sheet_timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -173,17 +173,34 @@
             app:behavior_peekHeight="300dp"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+            <FrameLayout
+                android:id="@+id/pull_indicator"
+                android:layout_width="60dp"
+                android:layout_height="5dp"
+                android:alpha="0.6"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/timetable_pull_indicator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </FrameLayout>
+
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/timetable_loading_animation"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="110dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                tools:visibility="visible"
-                android:elevation="5dp"
-                android:layout_marginTop="100dp"
-                android:layout_gravity="top|center"
-                app:lottie_rawRes="@raw/timetable_loading" />
+                app:lottie_rawRes="@raw/timetable_loading"
+                tools:visibility="visible" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_timetable"
@@ -192,6 +209,6 @@
                 android:paddingBottom="?attr/actionBarSize"
                 tools:listitem="@layout/timetable_item_class" />
 
-        </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

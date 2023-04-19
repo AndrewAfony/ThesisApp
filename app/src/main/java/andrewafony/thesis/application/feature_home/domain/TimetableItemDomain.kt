@@ -76,7 +76,8 @@ data class TimetableItemDomain(
                     place,
                     type,
                     isFirstClass,
-                    order
+                    order,
+                    false
                 )
             }
 

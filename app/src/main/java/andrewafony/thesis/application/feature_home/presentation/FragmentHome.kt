@@ -8,7 +8,6 @@ import andrewafony.thesis.application.databinding.FragmentHomeBinding
 import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableAdapter
 import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableChipClickHandler
 import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableViewHolderFabric
-import andrewafony.thesis.application.feature_home.presentation.adapter.TopPullIndicatorDecorator
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
@@ -69,7 +68,6 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             adapter = timetableAdapter
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
-            addItemDecoration(TopPullIndicatorDecorator())
         }
 
         viewModel.init(savedInstanceState == null)
@@ -89,6 +87,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 binding.backgroundFrame.alpha = slideOffset * 0.8f
+                binding.pullIndicator.alpha = (0.6f - slideOffset)
 
                 val shape = binding.bottomSheetTimetable.background as GradientDrawable
                 val radius = (1 - slideOffset) * 32
