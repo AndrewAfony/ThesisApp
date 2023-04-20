@@ -14,8 +14,8 @@ class BaseTimetableRepository(
         return result.map { it.map(mapperToDomain) }
     }
 
-    override suspend fun lesson(): TimetableItemDomain {
-        val result = cloudDataSource.classInfo("")
+    override suspend fun lesson(classId: String): TimetableItemDomain {
+        val result = cloudDataSource.classInfo(classId)
         return result.map(mapperToDomain)
     }
 }

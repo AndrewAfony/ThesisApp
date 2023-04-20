@@ -97,7 +97,8 @@
             android:id="@+id/chip_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="@color/sunshade"
+            app:chipBackgroundColor="@color/white"
+            android:elevation="1dp"
             app:chipIcon="@drawable/ic_arrow_link"
             app:iconStartPadding="4dp"
             tools:text="Online" />

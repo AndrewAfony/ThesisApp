@@ -1,19 +1,20 @@
 package andrewafony.thesis.application.feature_home.data.cloud
 
 import andrewafony.thesis.application.feature_home.data.TimetableItemData
+import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
-import java.util.Date
 
 interface FirestoreService {
 
     suspend fun gelClasses(): List<TimetableItemData>
 
-    suspend fun getClassInfo(classTime: String): TimetableItemData
+    suspend fun getClassInfo(classId: String): TimetableItemData
 
     class Base : FirestoreService {
 
@@ -32,9 +33,16 @@ interface FirestoreService {
                 .whereGreaterThan("date", Timestamp.now())
                 .orderBy("date")
                 .get()
+                .addOnSuccessListener {
+                    Log.d("MyHelper", "gelClasses success: $it")
+                }
+                .addOnFailureListener {
+                    Log.d("MyHelper", "gelClasses error: ${it.localizedMessage}")
+                }
                 .await()
 
             ref.documents.forEach {
+                Log.d("MyHelper", "gelClassesMapDate: ${(it.get("date_info") as? Map<*, *>)?.get("start")}")
                 val teacherRef = it.get("employee") as DocumentReference
                 val teacherName = teacherRef.get().await().get("name") as String
                 resultList.add(TimetableItemData(
@@ -51,12 +59,26 @@ interface FirestoreService {
             return resultList
         }
 
-        override suspend fun getClassInfo(classTime: String): TimetableItemData {
-            return TimetableItemData("",Date(), "", "", "", GeoPoint(12.3, 23.3), "")
+        override suspend fun getClassInfo(classId: String): TimetableItemData {
+            val result = classes
+                .whereEqualTo(FieldPath.documentId(), classId)
+                .get()
+                .await()
+
+            val first = result.documents[0]
+
+            val teacherRef = first.get("employee") as DocumentReference
+            val teacherName = teacherRef.get().await().get("name") as String
+
+            return TimetableItemData(
+                id = classId,
+                date = (first.get("date") as Timestamp).toDate(),
+                employee = teacherName,
+                link = first.get("link") as String,
+                name = first.get("name") as String,
+                place = first.get("place") as GeoPoint,
+                type = first.get("type") as String
+            )
         }
     }
-}
-
-fun String.createDate() : String {
-    return this.substringAfter("(").substringBefore(",")
 }

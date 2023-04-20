@@ -9,7 +9,10 @@
     <string name="news">News</string>
     <string name="deadlines">Deadlines</string>
 
-    <!-- Timetable Item   -->
+    <!-- Timetable Item -->
     <string name="offline">Offline</string>
     <string name="online">Online</string>
+
+    <!-- Timetable -->
+    <string name="there_is_no_timetable">There is no timetable</string>
 </resources>

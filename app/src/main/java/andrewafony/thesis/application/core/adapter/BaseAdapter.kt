@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
+
 abstract class BaseAdapter<T : BaseItem>(
     private val viewHolderFabric: ViewHolderFabric<T>,
 ) : RecyclerView.Adapter<BaseViewHolder<T>>(), Mapper.Unit<List<T>> {

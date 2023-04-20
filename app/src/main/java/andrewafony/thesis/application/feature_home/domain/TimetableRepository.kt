@@ -4,5 +4,5 @@ interface TimetableRepository {
 
     suspend fun timetable() : List<TimetableItemDomain>
 
-    suspend fun lesson(): TimetableItemDomain
+    suspend fun lesson(classId: String): TimetableItemDomain
 }

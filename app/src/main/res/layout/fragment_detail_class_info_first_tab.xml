@@ -1,18 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/class_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Class name" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/class_type"
+        app:layout_constraintStart_toStartOf="@+id/class_title"
+        app:layout_constraintTop_toBottomOf="@+id/class_title" />
+
+    <TextView
+        android:id="@+id/class_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:text="Seminar" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/class_time"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/class_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:text="Tuesday, 7 March from 13:00 to 14:20" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/class_link"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/class_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        tools:text="Online" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/class_place"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/class_info_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/class_place"
+        app:layout_constraintTop_toTopOf="@+id/imageView3">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="sfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbgsfdssssssssdfskjgdfhdfkjgbndfkjgbndjkfbgnkjdfbg"/>
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView3"
+            android:text="Course information" />
 
-    </ScrollView>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:backgroundTint="@color/light_grey"
+            android:src="@drawable/ic_arrow_link"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/professor_card"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:elevation="2dp"
+        android:padding="1dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/professor_card"
+        app:layout_constraintStart_toStartOf="@+id/professor_card"
+        app:layout_constraintTop_toTopOf="@+id/professor_card"
+        app:shapeAppearanceOverlay="@style/user_image_home"
+        app:srcCompat="@drawable/user" />
+
+    <TextView
+        android:id="@+id/professor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:elevation="2dp"
+        tools:text="Professor Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+        app:layout_constraintTop_toTopOf="@+id/shapeableImageView" />
+
+    <TextView
+        android:id="@+id/professor_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:elevation="2dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
+        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+        app:layout_constraintTop_toBottomOf="@+id/professor_name"
+        tools:text="Professor Grade" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/professor_card"
+        app:layout_constraintEnd_toEndOf="@+id/professor_card"
+        app:layout_constraintTop_toTopOf="@+id/professor_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

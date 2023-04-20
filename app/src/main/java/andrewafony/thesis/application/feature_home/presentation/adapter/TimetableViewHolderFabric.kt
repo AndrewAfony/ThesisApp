@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.google.firebase.firestore.GeoPoint
 
 class TimetableViewHolderFabric(
-    private val chipClickHandler: TimetableChipClickHandler,
+    private val chipClickHandler: TimetableClickHandler,
 ) : ViewHolderFabric<TimetableItemUi> {
 
     override fun create(parent: ViewGroup, viewType: Int): BaseViewHolder<TimetableItemUi> {
@@ -22,13 +22,13 @@ class TimetableViewHolderFabric(
 
 class TimetableClassViewHolder(
     private val binding: TimetableItemClassBinding,
-    private val clickHandler: TimetableChipClickHandler
+    private val clickHandler: TimetableClickHandler
 ) : BaseViewHolder<TimetableItemUi>(binding.root) {
 
     override fun bind(data: TimetableItemUi) {
         binding.run {
             root.setOnClickListener {
-                clickHandler.onClassClick(data.id)
+                clickHandler.onClassClick(data)
             }
             order.text = data.order
             disciplineName.text = data.name
@@ -76,9 +76,9 @@ class TimetableClassViewHolder(
     }
 }
 
-interface TimetableChipClickHandler {
+interface TimetableClickHandler {
 
-    fun onClassClick(classId: String)
+    fun onClassClick(classDate: TimetableItemUi)
 
     fun onPlaceClick(geoPoint: GeoPoint)
 

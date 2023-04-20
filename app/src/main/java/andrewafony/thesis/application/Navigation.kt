@@ -18,13 +18,14 @@ interface Navigation {
     data class Open(private val screen: Screen) : Abstract(screen) {
         override fun navigate(navController: NavController) {
             navController.navigate(
-                screen.fragment, null,
-                NavOptions.Builder()
-                    .setEnterAnim(R.anim.enter_from_right)
-                    .setExitAnim(R.anim.exit_to_left)
-                    .setPopExitAnim(R.anim.exit_to_right)
-                    .setPopEnterAnim(R.anim.enter_from_left)
-                    .build()
+                screen.fragment,
+//                null,
+//                NavOptions.Builder()
+//                    .setEnterAnim(R.anim.enter_from_right)
+//                    .setExitAnim(R.anim.exit_to_left)
+//                    .setPopExitAnim(R.anim.exit_to_right)
+//                    .setPopEnterAnim(R.anim.enter_from_left)
+//                    .build()
             )
         }
     }

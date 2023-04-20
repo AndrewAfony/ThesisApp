@@ -6,7 +6,7 @@ interface CloudDataSource {
 
     suspend fun allClasses() : List<TimetableItemData>
 
-    suspend fun classInfo(time: String) : TimetableItemData
+    suspend fun classInfo(classId: String) : TimetableItemData
 
     class Base(
         private val firestoreService: FirestoreService
@@ -16,8 +16,8 @@ interface CloudDataSource {
             return firestoreService.gelClasses()
         }
 
-        override suspend fun classInfo(time: String): TimetableItemData {
-            return firestoreService.getClassInfo(time)
+        override suspend fun classInfo(classId: String): TimetableItemData {
+            return firestoreService.getClassInfo(classId)
         }
     }
 }

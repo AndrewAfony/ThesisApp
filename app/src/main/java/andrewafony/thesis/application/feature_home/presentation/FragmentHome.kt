@@ -6,17 +6,20 @@ import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentHomeBinding
 import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableAdapter
-import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableChipClickHandler
+import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableClickHandler
 import andrewafony.thesis.application.feature_home.presentation.adapter.TimetableViewHolderFabric
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -24,7 +27,7 @@ import com.google.firebase.firestore.GeoPoint
 
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
-    private val viewModel by viewModels<HomeViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
+    private val viewModel by activityViewModels<HomeViewModel> (factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
 
     override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding =
         FragmentHomeBinding::inflate
@@ -36,11 +39,12 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             mainViewModel.navigate(Navigation.Open(Screen.Notifications))
         }
 
-        val timetableAdapter = TimetableAdapter(TimetableViewHolderFabric(object : TimetableChipClickHandler {
+        val timetableAdapter = TimetableAdapter(TimetableViewHolderFabric(object : TimetableClickHandler {
 
             // todo (вынести в отдельный класс)
 
-            override fun onClassClick(classId: String) {
+            override fun onClassClick(classDate: TimetableItemUi) {
+                viewModel.loadClassInfo(classDate)
                 mainViewModel.navigate(Navigation.Open(Screen.DetailClassInfo))
             }
 
@@ -67,12 +71,11 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         binding.rvTimetable.apply {
             adapter = timetableAdapter
             layoutManager = LinearLayoutManager(context)
-            addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+//            addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         }
 
-        viewModel.init(savedInstanceState == null)
-
         mainViewModel.observeTimetable(this) {
+            if (it.isEmpty()) binding.emptyTimetableText.visibility = View.VISIBLE
             binding.timetableLoadingAnimation.cancelAnimation()
             binding.timetableLoadingAnimation.visibility = View.GONE
             timetableAdapter.map(it)
