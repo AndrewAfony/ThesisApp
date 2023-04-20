@@ -67,7 +67,7 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
             binding.run {
                 classTitle.text = classInfo.name
                 classType.text = classInfo.type.replaceFirstChar { it.uppercase() }
-                classPlace.text = classInfo.place.toString()
+                classPlace.text = classInfo.placeName
                 classTime.text = "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
                 professorCard.setOnClickListener {  }
                 professorName.text = classInfo.employee

@@ -15,6 +15,7 @@ data class TimetableItemUi(
     val link: String,
     val name: String,
     val place: GeoPoint,
+    val placeName: String,
     val type: String,
     val isFirstClass: Boolean,
     val order: String
@@ -22,5 +23,5 @@ data class TimetableItemUi(
 
     override fun id(): String = id
 
-    override fun content(): String = "$name$dateDay$dateMonth$dateWeekDay$startTime$endTime$employee$link$place$type$order"
+    override fun content(): String = "$name$dateDay$dateMonth$dateWeekDay$startTime$endTime$employee$link$place$type$order$placeName"
 }

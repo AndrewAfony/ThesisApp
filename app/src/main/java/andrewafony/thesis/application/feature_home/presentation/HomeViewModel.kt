@@ -10,21 +10,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 class HomeViewModel(
-    private val interactor: TimetableInteractor,
     private val classInfoCommunication: ClassInfoCommunication,
-    private val dispatchers: Dispatchers
 ): ViewModel() {
 
     fun loadClassInfo(classDate: TimetableItemUi) {
         classInfoCommunication.map(classDate)
-//        dispatchers.launchBackground(viewModelScope) {
-//            val result = interactor.getClassInfo(classId)
-//            Log.d("MyHelper", "loadClassInfo: $result")
-//            dispatchers.launchUi(this) {
-//                Log.d("MyHelper", "ui")
-//                classInfoCommunication.map(result)
-//            }
-//        }
     }
 
     fun observeClassInfo(owner: LifecycleOwner, observer: Observer<TimetableItemUi>) {

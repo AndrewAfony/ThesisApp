@@ -1,10 +1,12 @@
 package andrewafony.thesis.application.feature_home.data.cloud
 
+import andrewafony.thesis.application.feature_home.data.Place
 import andrewafony.thesis.application.feature_home.data.TimetableItemData
 import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldPath
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -34,7 +36,7 @@ interface FirestoreService {
                 .orderBy("date")
                 .get()
                 .addOnSuccessListener {
-                    Log.d("MyHelper", "gelClasses success: $it")
+                    Log.d("MyHelper", "gelClasses success: ${it.documents}")
                 }
                 .addOnFailureListener {
                     Log.d("MyHelper", "gelClasses error: ${it.localizedMessage}")
@@ -42,16 +44,23 @@ interface FirestoreService {
                 .await()
 
             ref.documents.forEach {
-                Log.d("MyHelper", "gelClassesMapDate: ${(it.get("date_info") as? Map<*, *>)?.get("start")}")
+
+                val place = it.get("place") as? Map<*, *>
+                val link = place?.get("link").toString()
+
+                val placeArray = (place?.get("place_info") as List<*>)
+                val resultPlace = Place(placeArray.get(1) as GeoPoint, placeArray[0] as String)
+
                 val teacherRef = it.get("employee") as DocumentReference
                 val teacherName = teacherRef.get().await().get("name") as String
+
                 resultList.add(TimetableItemData(
                     id = it.id,
                     date = (it.get("date") as Timestamp).toDate(),
                     employee = teacherName,
-                    link = it.get("link") as String,
+                    link = link,
                     name = it.get("name") as String,
-                    place = it.get("place") as GeoPoint,
+                    place = resultPlace,
                     type = it.get("type") as String
                 ))
             }
@@ -70,13 +79,19 @@ interface FirestoreService {
             val teacherRef = first.get("employee") as DocumentReference
             val teacherName = teacherRef.get().await().get("name") as String
 
+            val place = first.get("place") as? Map<*, *>
+            val link = place?.get("link").toString()
+
+            val placeArray = (place?.get("place") as? Array<*>)
+            val resultPlace = Place(placeArray?.get(1) as GeoPoint, placeArray[0] as String)
+
             return TimetableItemData(
                 id = classId,
                 date = (first.get("date") as Timestamp).toDate(),
                 employee = teacherName,
-                link = first.get("link") as String,
+                link = link,
                 name = first.get("name") as String,
-                place = first.get("place") as GeoPoint,
+                place = resultPlace,
                 type = first.get("type") as String
             )
         }

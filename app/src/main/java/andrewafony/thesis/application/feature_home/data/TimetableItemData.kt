@@ -10,7 +10,7 @@ data class TimetableItemData(
     val employee: String,
     val link: String,
     val name: String,
-    val place: GeoPoint,
+    val place: Place,
     val type: String,
 ) {
 
@@ -22,7 +22,7 @@ data class TimetableItemData(
             employee: String,
             link: String,
             name: String,
-            place: GeoPoint,
+            place: Place,
             type: String,
         ): T
 
@@ -33,7 +33,7 @@ data class TimetableItemData(
                 employee: String,
                 link: String,
                 name: String,
-                place: GeoPoint,
+                place: Place,
                 type: String,
             ): TimetableItemDomain {
                 return TimetableItemDomain(id, data, employee, link, name, place, type)
@@ -43,3 +43,8 @@ data class TimetableItemData(
 
     fun <T> map(mapper: Mapper<T>): T = mapper.map(id, date, employee, link, name, place, type)
 }
+
+data class Place(
+    val coordinates: GeoPoint,
+    val placeName: String
+)

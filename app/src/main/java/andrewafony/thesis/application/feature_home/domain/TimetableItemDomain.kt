@@ -1,5 +1,6 @@
 package andrewafony.thesis.application.feature_home.domain
 
+import andrewafony.thesis.application.feature_home.data.Place
 import andrewafony.thesis.application.feature_home.presentation.TimetableItemUi
 import com.google.firebase.firestore.GeoPoint
 import java.text.SimpleDateFormat
@@ -11,7 +12,7 @@ data class TimetableItemDomain(
     val employee: String,
     val link: String,
     val name: String,
-    val place: GeoPoint,
+    val place: Place,
     val type: String,
 ) {
 
@@ -23,7 +24,7 @@ data class TimetableItemDomain(
             employee: String,
             link: String,
             name: String,
-            place: GeoPoint,
+            place: Place,
             type: String,
         ): T
 
@@ -38,7 +39,7 @@ data class TimetableItemDomain(
                 employee: String,
                 link: String,
                 name: String,
-                place: GeoPoint,
+                place: Place,
                 type: String,
             ): TimetableItemUi {
 
@@ -73,7 +74,8 @@ data class TimetableItemDomain(
                     employee,
                     link,
                     name,
-                    place,
+                    place.coordinates,
+                    place.placeName,
                     type,
                     isFirstClass,
                     order
