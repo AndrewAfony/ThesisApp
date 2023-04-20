@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 
 class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
@@ -69,9 +70,22 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
             binding.run {
                 progressLoadingProfessor.visibility = if (loading) View.VISIBLE else View.GONE
                 professorPageIcon.visibility = if (loading) View.INVISIBLE else View.VISIBLE
+                professorCard.isClickable = !loading
             }
         }
+        viewModel.observeProfessorInfo(this) {
+            binding.run {
+                professorName.text = it.name
+                professorPosition.text = it.position
+                Glide.with(root)
+                    .load(it.photo)
+                    .placeholder(R.drawable.user_placeholder)
+                    .into(binding.professorPhoto)
+            }
+
+        }
         viewModel.observeClassInfo(this) { classInfo ->
+            viewModel.loadProfessorInfo(classInfo.employee.info)
             binding.run {
                 classTitle.text = classInfo.name
                 classType.text = classInfo.type.replaceFirstChar { it.uppercase() }
@@ -98,10 +112,9 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
                         }
                     }
                 }
-                classTime.text =
-                    "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
+                classTime.text = "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
                 professorCard.setOnClickListener {
-                    viewModel.loadProfessorInfo("")
+                    // todo (open bottom sheet)
                 }
 //                professorName.text = classInfo.employee.name
 //                professorPosition.text = classInfo.employee.position

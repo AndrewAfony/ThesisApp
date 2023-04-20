@@ -2,6 +2,7 @@ package andrewafony.thesis.application.feature_home.data.cloud
 
 import andrewafony.thesis.application.feature_home.data.Place
 import andrewafony.thesis.application.feature_home.data.TimetableItemData
+import andrewafony.thesis.application.feature_home.presentation.professor_info.DetailProfessorInfo
 import andrewafony.thesis.application.feature_home.presentation.professor_info.ProfessorInfo
 import android.util.Log
 import com.google.firebase.Timestamp
@@ -19,9 +20,12 @@ interface FirestoreService {
 
     suspend fun getClassInfo(classId: String): TimetableItemData
 
+    suspend fun getProfessorInfo(professorRef: DocumentReference): DetailProfessorInfo
+
     class Base : FirestoreService {
 
-        private val group = "19_bi_1" //todo(получать группу в зависимости от авторизованного пользователя)
+        private val group =
+            "19_bi_1" //todo(получать группу в зависимости от авторизованного пользователя)
 
         private val database = Firebase.firestore
         private val classes = database.collection("classes")
@@ -55,7 +59,7 @@ interface FirestoreService {
                 val employee = it.get("employee") as Map<*, *>
                 val teacher = ProfessorInfo(
                     photo = employee.get("photo") as String,
-                    info = employee.get("info") as String
+                    info = employee.get("info") as DocumentReference
                 )
 
                 resultList.add(TimetableItemData(
@@ -89,7 +93,7 @@ interface FirestoreService {
             val employee = first.get("employee") as Map<*, *>
             val teacher = ProfessorInfo(
                 photo = employee.get("photo") as String,
-                info = employee.get("info") as String
+                info = employee.get("info") as DocumentReference
             )
 
             return TimetableItemData(
@@ -100,6 +104,21 @@ interface FirestoreService {
                 name = first.get("name") as String,
                 place = resultPlace,
                 type = first.get("type") as String
+            )
+        }
+
+        override suspend fun getProfessorInfo(professorRef: DocumentReference): DetailProfessorInfo {
+            val result = professorRef
+                .get()
+                .await()
+
+            return DetailProfessorInfo(
+                name = result.get("name") as String,
+                photo = result.get("photo") as String,
+                birthday = result.get("birthday") as String,
+                email = result.get("email") as String,
+                phone_number = result.get("phone_number") as String,
+                position = result.get("position") as String
             )
         }
     }
