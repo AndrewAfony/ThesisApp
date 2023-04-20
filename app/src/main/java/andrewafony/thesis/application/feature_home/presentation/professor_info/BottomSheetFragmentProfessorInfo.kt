@@ -7,6 +7,7 @@ import andrewafony.thesis.application.feature_home.presentation.HomeViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 
 class BottomSheetFragmentProfessorInfo: BaseBottomSheetFragment<FragmentProfessorInfoBinding>() {
@@ -21,6 +22,10 @@ class BottomSheetFragmentProfessorInfo: BaseBottomSheetFragment<FragmentProfesso
 
         viewModel.observeProfessorInfo(this) {
             // todo ()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback {
+            this@BottomSheetFragmentProfessorInfo.dismiss()
         }
     }
 

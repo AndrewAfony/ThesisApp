@@ -1,10 +1,13 @@
 package andrewafony.thesis.application.feature_home.presentation
 
+import andrewafony.thesis.application.Navigation
 import andrewafony.thesis.application.R
+import andrewafony.thesis.application.Screen
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoBinding
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoFirstTabBinding
+import andrewafony.thesis.application.feature_home.presentation.professor_info.BottomSheetFragmentProfessorInfo
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -68,8 +71,6 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
         super.onViewCreated(view, savedInstanceState)
         viewModel.observeProfessorInfoLoadingState(this) { loading ->
             binding.run {
-//                progressLoadingProfessor.visibility = if (loading) View.VISIBLE else View.GONE
-//                professorPageIcon.visibility = if (loading) View.INVISIBLE else View.VISIBLE
                 professorCard.isEnabled = !loading
 
                 if (loading) {
@@ -129,11 +130,8 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
                 }
                 classTime.text = "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
                 professorCard.setOnClickListener {
-                    Toast.makeText(context, "Test", Toast.LENGTH_SHORT).show()
-                    // todo (open bottom sheet)
+                    BottomSheetFragmentProfessorInfo.newInstance().show(childFragmentManager, "professor_info")
                 }
-//                professorName.text = classInfo.employee.name
-//                professorPosition.text = classInfo.employee.position
             }
         }
     }

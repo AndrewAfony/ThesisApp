@@ -279,20 +279,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-<!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
-<!--        android:id="@+id/circularProgressIndicator"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:elevation="4dp"-->
-<!--        android:indeterminate="true"-->
-<!--        app:indeterminateAnimationType="contiguous"-->
-<!--        app:indicatorColor="@color/black"-->
-<!--        app:indicatorSize="20dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/professor_card"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/professor_card"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/professor_card"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/professor_card"-->
-<!--        app:trackThickness="2dp" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
