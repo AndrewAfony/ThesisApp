@@ -68,9 +68,24 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
         super.onViewCreated(view, savedInstanceState)
         viewModel.observeProfessorInfoLoadingState(this) { loading ->
             binding.run {
-                progressLoadingProfessor.visibility = if (loading) View.VISIBLE else View.GONE
-                professorPageIcon.visibility = if (loading) View.INVISIBLE else View.VISIBLE
-                professorCard.isClickable = !loading
+//                progressLoadingProfessor.visibility = if (loading) View.VISIBLE else View.GONE
+//                professorPageIcon.visibility = if (loading) View.INVISIBLE else View.VISIBLE
+                professorCard.isEnabled = !loading
+
+                if (loading) {
+                    shimmerHolder.visibility = View.VISIBLE
+                    shimmerHolder.startShimmer()
+                    professorPhoto.visibility = View.INVISIBLE
+                    professorName.visibility = View.INVISIBLE
+                    professorPosition.visibility = View.INVISIBLE
+                }
+                else {
+                    shimmerHolder.visibility = View.GONE
+                    shimmerHolder.stopShimmer()
+                    professorPhoto.visibility = View.VISIBLE
+                    professorName.visibility = View.VISIBLE
+                    professorPosition.visibility = View.VISIBLE
+                }
             }
         }
         viewModel.observeProfessorInfo(this) {
@@ -114,6 +129,7 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
                 }
                 classTime.text = "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
                 professorCard.setOnClickListener {
+                    Toast.makeText(context, "Test", Toast.LENGTH_SHORT).show()
                     // todo (open bottom sheet)
                 }
 //                professorName.text = classInfo.employee.name

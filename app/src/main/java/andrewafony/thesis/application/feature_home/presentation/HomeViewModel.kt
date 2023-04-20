@@ -31,10 +31,11 @@ class HomeViewModel(
     fun loadProfessorInfo(professorRef: DocumentReference) {
         loadingState.map(true)
         dispatchers.launchBackground(viewModelScope) {
+            delay(1000)
             val result = interactor.getProfessorInfo(professorRef)
             dispatchers.launchUi(this) {
-                loadingState.map(false)
                 professorInfoCommunication.map(result)
+                loadingState.map(false)
             }
         }
     }
@@ -55,7 +56,7 @@ interface ClassInfoCommunication : Communication.Mutable<TimetableItemUi> {
 
 interface ProfessorInfoCommunication : Communication.Mutable<DetailProfessorInfo> {
 
-    class Base : Communication.Background<DetailProfessorInfo>(), ProfessorInfoCommunication
+    class Base : Communication.Ui<DetailProfessorInfo>(), ProfessorInfoCommunication
 }
 
 interface ProfessorPageLoadingState: Communication.Mutable<Boolean> {

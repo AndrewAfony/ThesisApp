@@ -147,9 +147,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:text="Course information"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:text="Course information" />
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/icon_course_link"
@@ -230,31 +230,69 @@
         app:layout_constraintEnd_toEndOf="@+id/professor_card"
         app:layout_constraintTop_toTopOf="@+id/professor_card" />
 
-    <FrameLayout
-        android:id="@+id/progress_loading_professor"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_holder"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rounded_corner_rectange_background"
-        android:elevation="3dp"
+        android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/professor_card"
         app:layout_constraintEnd_toEndOf="@+id/professor_card"
         app:layout_constraintStart_toStartOf="@+id/professor_card"
         app:layout_constraintTop_toTopOf="@+id/professor_card">
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="4dp"
-            android:indeterminate="true"
-            app:indeterminateAnimationType="contiguous"
-            app:indicatorColor="@color/black"
-            app:indicatorSize="20dp"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="@+id/professor_card"
-            app:layout_constraintEnd_toEndOf="@+id/professor_card"
-            app:layout_constraintStart_toStartOf="@+id/professor_card"
-            app:layout_constraintTop_toTopOf="@+id/professor_card"
-            app:trackThickness="2dp" />
-    </FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/circle_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/frameLayout2"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="48dp"
+                android:background="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/frameLayout"
+                app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="48dp"
+                android:background="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/frameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+<!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--        android:id="@+id/circularProgressIndicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:elevation="4dp"-->
+<!--        android:indeterminate="true"-->
+<!--        app:indeterminateAnimationType="contiguous"-->
+<!--        app:indicatorColor="@color/black"-->
+<!--        app:indicatorSize="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/professor_card"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/professor_card"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/professor_card"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/professor_card"-->
+<!--        app:trackThickness="2dp" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
