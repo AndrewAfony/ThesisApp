@@ -1,6 +1,7 @@
 package andrewafony.thesis.application.feature_home.presentation
 
 import andrewafony.thesis.application.core.BaseItem
+import andrewafony.thesis.application.feature_home.presentation.professor_info.ProfessorInfo
 import com.google.firebase.firestore.GeoPoint
 import java.util.Date
 
@@ -11,7 +12,7 @@ data class TimetableItemUi(
     val dateWeekDay: String,
     val startTime: String,
     val endTime: String,
-    val employee: String,
+    val employee: ProfessorInfo,
     val link: String,
     val name: String,
     val place: GeoPoint,

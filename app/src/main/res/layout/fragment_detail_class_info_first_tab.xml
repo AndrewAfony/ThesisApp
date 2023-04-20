@@ -202,13 +202,13 @@
         android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/professor_page_icon"
         app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
         app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
         tools:text="Professor Name" />
 
     <TextView
-        android:id="@+id/professor_grade"
+        android:id="@+id/professor_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -220,7 +220,7 @@
         tools:text="Professor Grade" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/professor_page_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -229,5 +229,21 @@
         app:layout_constraintBottom_toBottomOf="@+id/professor_card"
         app:layout_constraintEnd_toEndOf="@+id/professor_card"
         app:layout_constraintTop_toTopOf="@+id/professor_card" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_loading_professor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:indeterminate="true"
+        app:indeterminateAnimationType="contiguous"
+        app:indicatorColor="@color/black"
+        app:indicatorSize="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/professor_page_icon"
+        app:layout_constraintEnd_toEndOf="@+id/professor_page_icon"
+        app:layout_constraintStart_toStartOf="@+id/professor_page_icon"
+        app:layout_constraintTop_toTopOf="@+id/professor_page_icon"
+        app:trackThickness="2dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

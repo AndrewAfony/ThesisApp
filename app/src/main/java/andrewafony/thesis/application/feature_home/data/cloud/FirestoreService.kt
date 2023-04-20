@@ -2,6 +2,7 @@ package andrewafony.thesis.application.feature_home.data.cloud
 
 import andrewafony.thesis.application.feature_home.data.Place
 import andrewafony.thesis.application.feature_home.data.TimetableItemData
+import andrewafony.thesis.application.feature_home.presentation.professor_info.ProfessorInfo
 import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
@@ -49,15 +50,18 @@ interface FirestoreService {
                 val link = place?.get("link").toString()
 
                 val placeArray = (place?.get("place_info") as List<*>)
-                val resultPlace = Place(placeArray.get(1) as GeoPoint, placeArray[0] as String)
+                val resultPlace = Place(placeArray[1] as GeoPoint, placeArray[0] as String)
 
-                val teacherRef = it.get("employee") as DocumentReference
-                val teacherName = teacherRef.get().await().get("name") as String
+                val employee = it.get("employee") as Map<*, *>
+                val teacher = ProfessorInfo(
+                    photo = employee.get("photo") as String,
+                    info = employee.get("info") as String
+                )
 
                 resultList.add(TimetableItemData(
                     id = it.id,
                     date = (it.get("date") as Timestamp).toDate(),
-                    employee = teacherName,
+                    employee = teacher,
                     link = link,
                     name = it.get("name") as String,
                     place = resultPlace,
@@ -76,19 +80,22 @@ interface FirestoreService {
 
             val first = result.documents[0]
 
-            val teacherRef = first.get("employee") as DocumentReference
-            val teacherName = teacherRef.get().await().get("name") as String
-
             val place = first.get("place") as? Map<*, *>
             val link = place?.get("link").toString()
 
             val placeArray = (place?.get("place") as? Array<*>)
             val resultPlace = Place(placeArray?.get(1) as GeoPoint, placeArray[0] as String)
 
+            val employee = first.get("employee") as Map<*, *>
+            val teacher = ProfessorInfo(
+                photo = employee.get("photo") as String,
+                info = employee.get("info") as String
+            )
+
             return TimetableItemData(
                 id = classId,
                 date = (first.get("date") as Timestamp).toDate(),
-                employee = teacherName,
+                employee = teacher,
                 link = link,
                 name = first.get("name") as String,
                 place = resultPlace,

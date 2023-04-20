@@ -2,6 +2,7 @@ package andrewafony.thesis.application.feature_home.domain
 
 import andrewafony.thesis.application.feature_home.data.Place
 import andrewafony.thesis.application.feature_home.presentation.TimetableItemUi
+import andrewafony.thesis.application.feature_home.presentation.professor_info.ProfessorInfo
 import com.google.firebase.firestore.GeoPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -9,7 +10,7 @@ import java.util.*
 data class TimetableItemDomain(
     val id: String,
     val date: Date,
-    val employee: String,
+    val employee: ProfessorInfo,
     val link: String,
     val name: String,
     val place: Place,
@@ -21,7 +22,7 @@ data class TimetableItemDomain(
         fun map(
             id: String,
             date: Date,
-            employee: String,
+            employee: ProfessorInfo,
             link: String,
             name: String,
             place: Place,
@@ -36,7 +37,7 @@ data class TimetableItemDomain(
             override fun map(
                 id: String,
                 date: Date,
-                employee: String,
+                employee: ProfessorInfo,
                 link: String,
                 name: String,
                 place: Place,

@@ -42,10 +42,7 @@ class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
         }
 
         viewModel.observeClassInfo(this) {
-            binding.run {
-                toolbar.title = "${it.order} class"
-
-            }
+            binding.toolbar.title = "${it.order} class"
         }
     }
 }
@@ -68,6 +65,12 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.observeProfessorInfoLoadingState(this) { loading ->
+            binding.run {
+                progressLoadingProfessor.visibility = if (loading) View.VISIBLE else View.GONE
+                professorPageIcon.visibility = if (loading) View.INVISIBLE else View.VISIBLE
+            }
+        }
         viewModel.observeClassInfo(this) { classInfo ->
             binding.run {
                 classTitle.text = classInfo.name
@@ -97,8 +100,11 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
                 }
                 classTime.text =
                     "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
-                professorCard.setOnClickListener { }
-                professorName.text = classInfo.employee
+                professorCard.setOnClickListener {
+                    viewModel.loadProfessorInfo("")
+                }
+//                professorName.text = classInfo.employee.name
+//                professorPosition.text = classInfo.employee.position
             }
         }
     }

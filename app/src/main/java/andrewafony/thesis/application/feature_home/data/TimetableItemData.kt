@@ -1,13 +1,14 @@
 package andrewafony.thesis.application.feature_home.data
 
 import andrewafony.thesis.application.feature_home.domain.TimetableItemDomain
+import andrewafony.thesis.application.feature_home.presentation.professor_info.ProfessorInfo
 import com.google.firebase.firestore.GeoPoint
 import java.util.*
 
 data class TimetableItemData(
     val id: String,
     val date: Date,
-    val employee: String,
+    val employee: ProfessorInfo,
     val link: String,
     val name: String,
     val place: Place,
@@ -19,7 +20,7 @@ data class TimetableItemData(
         fun map(
             id: String,
             data: Date,
-            employee: String,
+            employee: ProfessorInfo,
             link: String,
             name: String,
             place: Place,
@@ -30,7 +31,7 @@ data class TimetableItemData(
             override fun map(
                 id: String,
                 data: Date,
-                employee: String,
+                employee: ProfessorInfo,
                 link: String,
                 name: String,
                 place: Place,

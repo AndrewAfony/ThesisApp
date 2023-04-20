@@ -8,6 +8,7 @@ import andrewafony.thesis.application.feature_home.presentation.TimetableItemUi
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.GeoPoint
 
 class TimetableViewHolderFabric(
@@ -27,6 +28,10 @@ class TimetableClassViewHolder(
 
     override fun bind(data: TimetableItemUi) {
         binding.run {
+            Glide.with(root)
+                .load(data.employee.photo)
+                .placeholder(R.drawable.user_placeholder)
+                .into(binding.teacherPhoto)
             root.setOnClickListener {
                 clickHandler.onClassClick(data)
             }
