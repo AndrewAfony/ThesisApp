@@ -1,19 +1,24 @@
 package andrewafony.thesis.application.feature_home.presentation
 
+import andrewafony.thesis.application.R
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoBinding
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoFirstTabBinding
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 
-class FragmentDetailClassInfo: BaseFragment<FragmentDetailClassInfoBinding>() {
+class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
 
     private val viewModel by activityViewModels<HomeViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
 
@@ -67,11 +72,35 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
             binding.run {
                 classTitle.text = classInfo.name
                 classType.text = classInfo.type.replaceFirstChar { it.uppercase() }
-                classPlace.text = classInfo.placeName
-                classTime.text = "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
-                professorCard.setOnClickListener {  }
+                if (classInfo.link.isBlank()) {
+                    classPlace.text = classInfo.placeName
+                    placeHolder.setOnClickListener {
+                        val geo = Uri.parse("geo:${classInfo.place.latitude},${classInfo.place.longitude}?z=15")
+                        val mapIntent = Intent(Intent.ACTION_VIEW, geo)
+                        try {
+                            startActivity(mapIntent)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    classPlace.text = getString(R.string.online)
+                    iconPlaceLink.visibility = View.VISIBLE
+                    placeHolder.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(classInfo.link))
+                        try {
+                            startActivity(intent)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "Error link: ${classInfo.link}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                classTime.text =
+                    "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
+                professorCard.setOnClickListener { }
                 professorName.text = classInfo.employee
             }
         }
     }
 }
+
