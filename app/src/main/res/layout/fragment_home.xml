@@ -189,7 +189,7 @@
 
             <FrameLayout
                 android:id="@+id/pull_indicator"
-                android:layout_width="60dp"
+                android:layout_width="40dp"
                 android:layout_height="5dp"
                 android:alpha="0.6"
                 android:layout_gravity="center_horizontal"
@@ -197,9 +197,7 @@
                 android:background="@drawable/timetable_pull_indicator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </FrameLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/timetable_loading_animation"
