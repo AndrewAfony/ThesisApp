@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.google.android.material.datepicker.MaterialDatePicker
 
 class BottomSheetFragmentAddDeadline: BaseBottomSheetFragment<FragmentAddDeadlineBottomSheetBinding>() {
 
@@ -26,7 +27,7 @@ class BottomSheetFragmentAddDeadline: BaseBottomSheetFragment<FragmentAddDeadlin
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonChooseDate.setOnClickListener {
-            Toast.makeText(context, "Test", Toast.LENGTH_SHORT).show()
+            BottomSheetDateAndTimePick.newInstance().show(childFragmentManager, null)
         }
 
         binding.buttonCreate.setOnClickListener {
