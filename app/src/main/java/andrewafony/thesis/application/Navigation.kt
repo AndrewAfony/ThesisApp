@@ -79,6 +79,11 @@ interface Screen {
             get() = R.id.fragmentDetailClassInfo
     }
 
+    object FullProfileImage : Screen {
+        override val fragment: Int
+            get() = R.id.action_global_fragmentFullProfileImage
+    }
+
 //    object Login : Screen {
 //        override val fragment: Class<out Fragment>
 //            get() = FragmentLogin::class.java

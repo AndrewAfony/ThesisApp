@@ -48,5 +48,11 @@
             android:name="andrewafony.thesis.application.feature_deadlines.presentation.FragmentDeadlines"
             android:label="FragmentDeadlines" />
     </navigation>
+    <fragment
+        android:id="@+id/fragmentFullProfileImage"
+        android:name="andrewafony.thesis.application.feature_home.presentation.FragmentFullProfileImage"
+        android:label="FragmentFullProfileImage" />
+
+    <action android:id="@+id/action_global_fragmentFullProfileImage" app:destination="@id/fragmentFullProfileImage"/>
 
 </navigation>

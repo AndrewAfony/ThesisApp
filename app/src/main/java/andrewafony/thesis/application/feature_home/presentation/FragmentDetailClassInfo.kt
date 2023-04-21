@@ -1,19 +1,17 @@
 package andrewafony.thesis.application.feature_home.presentation
 
-import andrewafony.thesis.application.Navigation
 import andrewafony.thesis.application.R
-import andrewafony.thesis.application.Screen
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoBinding
-import andrewafony.thesis.application.databinding.FragmentDetailClassInfoFirstTabBinding
+import andrewafony.thesis.application.databinding.FragmentDetailClassInfoTabDeadlinesBinding
+import andrewafony.thesis.application.databinding.FragmentDetailClassInfoTabInfoBinding
 import andrewafony.thesis.application.feature_home.presentation.professor_info.BottomSheetFragmentProfessorInfo
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -56,16 +54,17 @@ class TestAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
-        return FragmentDetailClassInfoFirstTab()
+        return if (position == 0) FragmentDetailClassInfoFirstTab()
+        else FragmentDetailClassInfoTabDeadlines()
     }
 }
 
-class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirstTabBinding>() {
+class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoTabInfoBinding>() {
 
     private val viewModel by activityViewModels<HomeViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
 
-    override val bindingInflater: (LayoutInflater) -> FragmentDetailClassInfoFirstTabBinding
-        get() = FragmentDetailClassInfoFirstTabBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> FragmentDetailClassInfoTabInfoBinding
+        get() = FragmentDetailClassInfoTabInfoBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -95,7 +94,6 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
                 professorPosition.text = it.position
                 Glide.with(root)
                     .load(it.photo)
-                    .placeholder(R.drawable.user_placeholder)
                     .into(binding.professorPhoto)
             }
 
@@ -137,3 +135,13 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoFirs
     }
 }
 
+class FragmentDetailClassInfoTabDeadlines : BaseFragment<FragmentDetailClassInfoTabDeadlinesBinding>() {
+
+    override val bindingInflater: (LayoutInflater) -> FragmentDetailClassInfoTabDeadlinesBinding
+        get() = FragmentDetailClassInfoTabDeadlinesBinding::inflate
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+}
