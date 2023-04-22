@@ -142,6 +142,6 @@ class FragmentDetailClassInfoTabDeadlines : BaseFragment<FragmentDetailClassInfo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        // todo (получать дедлайны из сети и локальные, связанные с дисциплинной)
     }
 }

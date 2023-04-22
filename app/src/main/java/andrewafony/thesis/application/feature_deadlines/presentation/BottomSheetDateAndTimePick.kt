@@ -22,8 +22,6 @@ import java.util.*
 
 class BottomSheetDateAndTimePick : BaseBottomSheetFragment<FragmentDeadlineDatePickerBinding>() {
 
-    private val viewModel by activityViewModels<DeadlinesViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
-
     override val bindingInflater: (LayoutInflater) -> FragmentDeadlineDatePickerBinding
         get() = FragmentDeadlineDatePickerBinding::inflate
 
@@ -61,7 +59,10 @@ class BottomSheetDateAndTimePick : BaseBottomSheetFragment<FragmentDeadlineDateP
         timePicker.addOnPositiveButtonClickListener {
             val minutes =
                 if (timePicker.minute < 10) "0${timePicker.minute}" else "${timePicker.minute}"
-            binding.textTime.text = "${timePicker.hour}:$minutes"
+            val hours = if (timePicker.hour < 10) "0${timePicker.hour}" else "${timePicker.hour}"
+            binding.textTime.text = "$hours:$minutes"
+            if (binding.textDate.text.contains("Choose"))
+                binding.textDate.text = today
         }
 
         binding.run {
@@ -80,10 +81,6 @@ class BottomSheetDateAndTimePick : BaseBottomSheetFragment<FragmentDeadlineDateP
                     )
                 )
                 dismiss()
-//                viewModel.setDateAndTime(
-//                    binding.textDate.text.toString(),
-//                    binding.textTime.text.toString()
-//                )
             }
             buttonToday.setOnClickListener {
                 binding.textDate.text = today
@@ -98,12 +95,20 @@ class BottomSheetDateAndTimePick : BaseBottomSheetFragment<FragmentDeadlineDateP
                 binding.textDate.text = "Choose date"
                 binding.textTime.text = "Choose time"
             }
+
+            binding.run {
+                textDate.text = arguments?.getString("date") ?: "Choose date"
+                textTime.text = arguments?.getString("time") ?: "Choose time"
+            }
         }
     }
 
     companion object {
-        fun newInstance(): BottomSheetDateAndTimePick {
-            return BottomSheetDateAndTimePick()
+        fun newInstance(date: String?, time: String?): BottomSheetDateAndTimePick {
+            val fragment = BottomSheetDateAndTimePick().apply {
+                arguments = bundleOf("date" to date, "time" to time)
+            }
+            return fragment
         }
     }
 }

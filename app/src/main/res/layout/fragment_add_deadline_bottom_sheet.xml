@@ -17,24 +17,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/button_choose_discipline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pull_indicator">
+
+        <TextView
+            android:id="@+id/text_discipline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxWidth="260dp"
+            android:maxLines="1"
+            android:text="Discipline"
+            android:textColor="@color/blue_dodger"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_drop_down"
+            app:tint="@color/blue_dodger" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         app:boxBackgroundMode="none"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pull_indicator">
+        app:layout_constraintTop_toBottomOf="@+id/button_choose_discipline">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/deadline_edit_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="e.g. Do homework"
-            android:paddingTop="12dp"
             android:inputType="textCapSentences"
+            android:paddingTop="12dp"
             android:textCursorDrawable="@drawable/text_cursor_indicator"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -56,9 +86,9 @@
             android:id="@+id/deadline_description_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Description"
             android:inputType="textCapSentences"
             android:paddingTop="12dp"
-            android:hint="Description"
             android:textCursorDrawable="@drawable/text_cursor_indicator" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -69,8 +99,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:foreground="?attr/selectableItemBackground"
         android:background="@drawable/outline_rounded_corner_background"
+        android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"
@@ -79,8 +109,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/class_time" />
 
         <TextView
@@ -94,12 +124,12 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/button_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/circle_background_blue"
+        android:background="@drawable/create_deadline_button_background"
         android:padding="8dp"
         android:src="@drawable/ic_arrow_upward"
         app:layout_constraintBottom_toBottomOf="@+id/button_choose_date"

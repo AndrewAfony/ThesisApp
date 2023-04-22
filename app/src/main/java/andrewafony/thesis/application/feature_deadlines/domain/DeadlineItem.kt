@@ -7,16 +7,24 @@ import java.util.*
 
 @Entity(tableName = "deadlines")
 data class DeadlineItem(
-    @PrimaryKey(true) val id: Int,
+    @PrimaryKey(true) val id: Int = 0,
     val deadline: String,
-    val isDone: Boolean,
-    val description: String?,
-    val date: Date?
+    val isDone: Boolean = false,
+    val discipline: String? = null,
+    val description: String? = null,
+    val date: Date? = null
 ) {
 
     interface Mapper<T> {
 
-        fun map(id: Int, deadline: String, isDone: Boolean, description: String?, date: Date?): T
+        fun map(
+            id: Int,
+            deadline: String,
+            isDone: Boolean,
+            discipline: String?,
+            description: String?,
+            date: Date?,
+        ): T
 
         class ToUi : Mapper<DeadlineItemUi> {
 
@@ -24,13 +32,15 @@ data class DeadlineItem(
                 id: Int,
                 deadline: String,
                 isDone: Boolean,
+                discipline: String?,
                 description: String?,
-                date: Date?
+                date: Date?,
             ): DeadlineItemUi {
-                return DeadlineItemUi(id, deadline, isDone, description, date)
+                return DeadlineItemUi(id, deadline, isDone, discipline, description, date)
             }
         }
     }
 
-    fun <T> map(mapper: Mapper<T>): T = mapper.map(id, deadline, isDone, description, date)
+    fun <T> map(mapper: Mapper<T>): T =
+        mapper.map(id, deadline, isDone, discipline, description, date)
 }
