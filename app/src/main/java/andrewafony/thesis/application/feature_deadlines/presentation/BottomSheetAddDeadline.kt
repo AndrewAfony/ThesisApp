@@ -52,7 +52,6 @@ class BottomSheetFragmentAddDeadline :
         binding.deadlineEditText.addTextChangedListener (object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.d("MyHelper", "onTextChanged: ${s.toString()}")
                 binding.buttonCreate.isEnabled = !TextUtils.isEmpty(s)
             }
             override fun afterTextChanged(s: Editable?) {}
@@ -71,10 +70,11 @@ class BottomSheetFragmentAddDeadline :
             val discipline = if (binding.textDiscipline.text.contains("Discipline")) null else binding.textDiscipline.text.toString()
             val date = if (binding.textDate.text.contains("No date")) null
                         else SimpleDateFormat("dd/MM/yyyy HH:mm").parse(binding.textDate.text.toString()) // todo (parse all cases)
+            val description = if (binding.deadlineDescriptionEditText.text.isNullOrEmpty()) null else binding.deadlineDescriptionEditText.text.toString()
             viewModel.addDeadline(
                 DeadlineItem(
                     deadline = binding.deadlineEditText.text.toString(),
-                    description = binding.deadlineDescriptionEditText.text.toString(),
+                    description = description,
                     discipline = discipline,
                     date = date
                 )
