@@ -3,6 +3,7 @@ package andrewafony.thesis.application
 import andrewafony.thesis.application.databinding.ActivityMainBinding
 import andrewafony.thesis.application.di.ViewModelFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity

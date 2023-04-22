@@ -5,11 +5,13 @@ import andrewafony.thesis.application.databinding.FragmentAddDeadlineBottomSheet
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.setFragmentResultListener
 import com.google.android.material.datepicker.MaterialDatePicker
 
 class BottomSheetFragmentAddDeadline: BaseBottomSheetFragment<FragmentAddDeadlineBottomSheetBinding>() {
@@ -40,6 +42,14 @@ class BottomSheetFragmentAddDeadline: BaseBottomSheetFragment<FragmentAddDeadlin
         binding.deadlineEditText.requestFocus()
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(binding.deadlineEditText, InputMethodManager.SHOW_IMPLICIT)
+
+        childFragmentManager.setFragmentResultListener("dateAndTime", this) { key, bundle ->
+            val date = bundle.getString("date")
+            val time = bundle.getString("time")
+
+            binding.textDate.text = "$date $time" // todo (if choose...)
+            // todo ()
+        }
     }
 
     companion object {

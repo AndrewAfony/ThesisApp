@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 @Database(entities = [DeadlineItem::class], version = 1)
+@androidx.room.TypeConverters(TypeConverters::class)
 abstract class DeadlinesDatabase : RoomDatabase() {
 
     abstract fun dao(): DeadlinesDao

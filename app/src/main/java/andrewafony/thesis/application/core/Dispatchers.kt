@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-interface Dispatchers {
+interface Dispatchers: DispatchersName {
 
     fun launchUi(scope: CoroutineScope, block: suspend CoroutineScope.() -> Unit): Job
 
@@ -25,7 +25,18 @@ interface Dispatchers {
             scope: CoroutineScope,
             block: suspend CoroutineScope.() -> Unit,
         ): Job = scope.launch(context = background, block = block)
+
+        override val mainName: CoroutineDispatcher = ui
+
+        override val backgroundName: CoroutineDispatcher = background
     }
 
     class Base: Abstract(kotlinx.coroutines.Dispatchers.Main, kotlinx.coroutines.Dispatchers.IO)
+}
+
+interface DispatchersName {
+
+    val mainName: CoroutineDispatcher
+
+    val backgroundName: CoroutineDispatcher
 }

@@ -8,7 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -70,10 +73,17 @@ class BottomSheetDateAndTimePick : BaseBottomSheetFragment<FragmentDeadlineDateP
             }
             buttonCancel.setOnClickListener { dismiss() }
             buttonDone.setOnClickListener {
-                viewModel.setDateAndTime(
-                    binding.textDate.text.toString(),
-                    binding.textTime.text.toString()
+                setFragmentResult("dateAndTime",
+                    bundleOf(
+                        "date" to binding.textDate.text.toString(),
+                        "time" to binding.textTime.text.toString()
+                    )
                 )
+                dismiss()
+//                viewModel.setDateAndTime(
+//                    binding.textDate.text.toString(),
+//                    binding.textTime.text.toString()
+//                )
             }
             buttonToday.setOnClickListener {
                 binding.textDate.text = today

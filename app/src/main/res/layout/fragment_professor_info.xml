@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet_professor_info"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/timetable_bottom_sheet_background">
+    android:layout_height="match_parent">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/professor_photo"
@@ -208,6 +207,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_birthday" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

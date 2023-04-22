@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface DeadlinesCacheDataSource {
 
-    suspend fun getDeadlines() : Flow<List<DeadlineItem>>
+    fun getDeadlines() : Flow<List<DeadlineItem>>
 
     suspend fun getDeadline(deadlineId: Int): DeadlineItem
 
@@ -17,7 +17,7 @@ interface DeadlinesCacheDataSource {
         private val dao: DeadlinesDao
     ) : DeadlinesCacheDataSource {
 
-        override suspend fun getDeadlines(): Flow<List<DeadlineItem>> = dao.allDeadlines()
+        override fun getDeadlines(): Flow<List<DeadlineItem>> = dao.allDeadlines()
 
         override suspend fun getDeadline(deadlineId: Int): DeadlineItem = dao.deadline(deadlineId)
 
