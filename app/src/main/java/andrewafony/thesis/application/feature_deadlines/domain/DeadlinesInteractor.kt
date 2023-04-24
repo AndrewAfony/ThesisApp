@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.*
 
 interface DeadlinesInteractor {
 
-    suspend fun getDeadlines(): Flow<List<DeadlineItemUi>>
+    suspend fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>>
 
     suspend fun getDeadline(deadlineId: Int): DeadlineItemUi
 
@@ -23,7 +23,7 @@ interface DeadlinesInteractor {
         private val dispatchers: DispatchersName
     ) : DeadlinesInteractor {
 
-        override suspend fun getDeadlines(): Flow<List<DeadlineItemUi>> =
+        override suspend fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>> =
             // todo (return map<Date, List<DeadlineItemUi>>)
             repository
                 .getDeadlines()
@@ -31,7 +31,10 @@ interface DeadlinesInteractor {
                     deadlines
                         .sortedBy { it.date }
                         .map { it.map(mapperToUi) }
-                        .filter { !it.isDone }
+                        .filter {
+                            if (filterByDone) it.isDone
+                            else !it.isDone
+                        }
                 }
                 .flowOn(dispatchers.backgroundName)
 

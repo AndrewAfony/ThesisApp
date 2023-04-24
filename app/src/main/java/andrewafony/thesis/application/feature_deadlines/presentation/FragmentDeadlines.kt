@@ -1,5 +1,6 @@
 package andrewafony.thesis.application.feature_deadlines.presentation
 
+import andrewafony.thesis.application.R
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentDeadlinesBinding
@@ -44,6 +45,16 @@ class FragmentDeadlines: BaseFragment<FragmentDeadlinesBinding>() {
 
         binding.buttonAddDeadline.setOnClickListener {
             BottomSheetFragmentAddDeadline.newInstance().show(childFragmentManager, "fragment_add_deadline")
+        }
+
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when(item.itemId) {
+                R.id.button_show_deadlines_filter -> {
+                    BottomSheetDeadlinesListSettings.newInstance().show(childFragmentManager, null)
+                    true
+                }
+                else -> false
+            }
         }
     }
 }
