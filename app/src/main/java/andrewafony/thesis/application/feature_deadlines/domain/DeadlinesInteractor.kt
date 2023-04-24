@@ -15,6 +15,8 @@ interface DeadlinesInteractor {
 
     suspend fun deleteDeadline(deadline: DeadlineItem)
 
+    suspend fun updateDeadline(deadline: DeadlineItem)
+
     class Base(
         private val repository: DeadlinesRepository,
         private val mapperToUi: DeadlineItem.Mapper<DeadlineItemUi> = DeadlineItem.Mapper.ToUi(),
@@ -29,6 +31,7 @@ interface DeadlinesInteractor {
                     deadlines
                         .sortedBy { it.date }
                         .map { it.map(mapperToUi) }
+                        .filter { !it.isDone }
                 }
                 .flowOn(dispatchers.backgroundName)
 
@@ -43,6 +46,10 @@ interface DeadlinesInteractor {
 
         override suspend fun deleteDeadline(deadline: DeadlineItem) {
             repository.deleteDeadline(deadline)
+        }
+
+        override suspend fun updateDeadline(deadline: DeadlineItem) {
+            repository.updateDeadline(deadline)
         }
     }
 }

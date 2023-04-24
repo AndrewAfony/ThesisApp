@@ -40,7 +40,7 @@ class BottomSheetFragmentAddDeadline :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        // todo (schedule notification with WorkManager)
         val menu = DisciplinesPopupMenu(context, binding.buttonChooseDiscipline).apply {
             onItemSelectedListener {
                 binding.textDiscipline.text = it
@@ -49,7 +49,7 @@ class BottomSheetFragmentAddDeadline :
 
         binding.buttonCreate.isEnabled = false
 
-        binding.deadlineEditText.addTextChangedListener (object : TextWatcher {
+        binding.deadlineEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.buttonCreate.isEnabled = !TextUtils.isEmpty(s)
@@ -58,8 +58,12 @@ class BottomSheetFragmentAddDeadline :
         })
 
         binding.buttonChooseDate.setOnClickListener {
-            val date = if (binding.textDate.text.contains("No date")) null else binding.textDate.text.toString().substringBefore(" ")
-            val time = if (binding.textDate.text.contains("No date")) null else binding.textDate.text.toString().substringAfter(" ")
+            val date =
+                if (binding.textDate.text.contains("No date")) null else binding.textDate.text.toString()
+                    .substringBefore(" ")
+            val time =
+                if (binding.textDate.text.contains("No date")) null else binding.textDate.text.toString()
+                    .substringAfter(" ")
             BottomSheetDateAndTimePick.newInstance(
                 date = date,
                 time = time
@@ -67,10 +71,12 @@ class BottomSheetFragmentAddDeadline :
         }
 
         binding.buttonCreate.setOnClickListener {
-            val discipline = if (binding.textDiscipline.text.contains("Discipline")) null else binding.textDiscipline.text.toString()
+            val discipline =
+                if (binding.textDiscipline.text.contains("Discipline")) null else binding.textDiscipline.text.toString()
             val date = if (binding.textDate.text.contains("No date")) null
-                        else SimpleDateFormat("dd/MM/yyyy HH:mm").parse(binding.textDate.text.toString()) // todo (parse all cases)
-            val description = if (binding.deadlineDescriptionEditText.text.isNullOrEmpty()) null else binding.deadlineDescriptionEditText.text.toString()
+            else SimpleDateFormat("dd/MM/yyyy HH:mm").parse(binding.textDate.text.toString()) // todo (parse all cases)
+            val description =
+                if (binding.deadlineDescriptionEditText.text.isNullOrEmpty()) null else binding.deadlineDescriptionEditText.text.toString()
             viewModel.addDeadline(
                 DeadlineItem(
                     deadline = binding.deadlineEditText.text.toString(),
@@ -125,6 +131,7 @@ class DisciplinesPopupMenu(
         menu.menu.add("Test")
         menu.menu.add("Test 1")
         menu.menu.add("Test Long Name Discipline Discipline Discipline")
+        menu.menu.add("No disciplines").isEnabled = false
     }
 
     fun show() {

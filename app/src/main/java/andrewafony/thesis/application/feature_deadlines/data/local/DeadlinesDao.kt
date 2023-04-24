@@ -11,11 +11,14 @@ interface DeadlinesDao {
     fun allDeadlines() : Flow<List<DeadlineItem>>
 
     @Query("SELECT * FROM deadlines WHERE id = :deadlineId")
-    fun deadline(deadlineId: Int) : DeadlineItem
+    suspend fun deadline(deadlineId: Int) : DeadlineItem
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(deadline: DeadlineItem)
+    suspend fun insert(deadline: DeadlineItem)
 
     @Delete
-    fun delete(deadline: DeadlineItem)
+    suspend fun delete(deadline: DeadlineItem)
+
+    @Update(entity = DeadlineItem::class)
+    suspend fun updateDeadline(deadline: DeadlineItem)
 }

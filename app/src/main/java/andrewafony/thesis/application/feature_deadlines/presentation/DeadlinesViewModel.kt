@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 class DeadlinesViewModel(
     private val interactor: DeadlinesInteractor,
     private val dispatchers: Dispatchers,
-    private val deadlinesCommunication: DeadlinesCommunication
+    private val deadlinesCommunication: DeadlinesCommunication,
+    private val mapperToDatabaseEntity: DeadlineItemUi.Mapper.ToDatabaseEntity = DeadlineItemUi.Mapper.ToDatabaseEntity()
 ): ViewModel() {
 
     fun init(isFirstRun: Boolean) {
@@ -36,6 +37,12 @@ class DeadlinesViewModel(
                     deadlinesCommunication.map(deadlines)
                 }
             }
+        }
+    }
+
+    fun updateDoneState(deadline: DeadlineItemUi) {
+        dispatchers.launchBackground(viewModelScope) {
+            interactor.updateDeadline(deadline.map(mapperToDatabaseEntity))
         }
     }
 

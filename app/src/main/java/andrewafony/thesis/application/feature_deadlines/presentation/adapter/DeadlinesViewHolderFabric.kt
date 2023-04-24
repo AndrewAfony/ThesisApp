@@ -3,6 +3,7 @@ package andrewafony.thesis.application.feature_deadlines.presentation.adapter
 import andrewafony.thesis.application.core.adapter.BaseViewHolder
 import andrewafony.thesis.application.core.adapter.ViewHolderFabric
 import andrewafony.thesis.application.databinding.DeadlineItemBinding
+import andrewafony.thesis.application.feature_deadlines.domain.DeadlineItem
 import andrewafony.thesis.application.feature_deadlines.presentation.DeadlineItemUi
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,19 +12,23 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import java.text.SimpleDateFormat
 
-class DeadlinesViewHolderFabric : ViewHolderFabric<DeadlineItemUi> {
+class DeadlinesViewHolderFabric(
+    private val updateDoneState: (DeadlineItemUi) -> Unit
+) : ViewHolderFabric<DeadlineItemUi> {
 
     override fun create(parent: ViewGroup, viewType: Int): BaseViewHolder<DeadlineItemUi> {
         return DeadlineViewHolder(
             DeadlineItemBinding.inflate(LayoutInflater.from(parent.context),
             parent,
-            false)
+            false),
+            updateDoneState
         )
     }
 }
 
 class DeadlineViewHolder(
-    private val binding: DeadlineItemBinding
+    private val binding: DeadlineItemBinding,
+    private val updateDoneState: (DeadlineItemUi) -> Unit
 ) : BaseViewHolder<DeadlineItemUi>(binding.root) {
 
     override fun bind(data: DeadlineItemUi) {
@@ -43,7 +48,6 @@ class DeadlineViewHolder(
                 constraints.applyTo(binding.root)
             }
 
-            Log.d("MyHelper", "bind: ${data.description}")
             if (data.description == null) {
 
                 textDescription.visibility = View.GONE
@@ -70,6 +74,10 @@ class DeadlineViewHolder(
                     text = SimpleDateFormat("EEE, MMM dd").format(data.date)
                 }
                 imageDeadlineDate.visibility = View.VISIBLE
+            }
+
+            buttonIsDone.setOnCheckedChangeListener { buttonView, isChecked ->
+                updateDoneState(data.copy(isDone = isChecked))
             }
         }
     }

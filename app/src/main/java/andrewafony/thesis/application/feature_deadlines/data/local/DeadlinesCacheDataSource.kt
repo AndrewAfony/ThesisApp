@@ -13,6 +13,8 @@ interface DeadlinesCacheDataSource {
 
     suspend fun deleteDeadline(deadline: DeadlineItem)
 
+    suspend fun updateDeadline(deadlineItem: DeadlineItem)
+
     class Base(
         private val dao: DeadlinesDao
     ) : DeadlinesCacheDataSource {
@@ -24,5 +26,7 @@ interface DeadlinesCacheDataSource {
         override suspend fun addDeadline(deadline: DeadlineItem) = dao.insert(deadline)
 
         override suspend fun deleteDeadline(deadline: DeadlineItem) = dao.delete(deadline)
+
+        override suspend fun updateDeadline(deadlineItem: DeadlineItem) = dao.updateDeadline(deadlineItem)
     }
 }

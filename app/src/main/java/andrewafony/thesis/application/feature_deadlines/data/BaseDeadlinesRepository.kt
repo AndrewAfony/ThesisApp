@@ -4,7 +4,6 @@ import andrewafony.thesis.application.feature_deadlines.data.local.DeadlinesCach
 import andrewafony.thesis.application.feature_deadlines.domain.DeadlineItem
 import andrewafony.thesis.application.feature_deadlines.domain.DeadlinesRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
 
 class BaseDeadlinesRepository(
     private val cacheDataSource: DeadlinesCacheDataSource
@@ -24,5 +23,9 @@ class BaseDeadlinesRepository(
 
     override suspend fun deleteDeadline(deadline: DeadlineItem) {
         return cacheDataSource.deleteDeadline(deadline)
+    }
+
+    override suspend fun updateDeadline(deadline: DeadlineItem) {
+        return cacheDataSource.updateDeadline(deadline)
     }
 }

@@ -11,4 +11,6 @@ interface DeadlinesRepository {
     suspend fun addDeadline(deadlineItem: DeadlineItem)
 
     suspend fun deleteDeadline(deadline: DeadlineItem)
+
+    suspend fun updateDeadline(deadline: DeadlineItem)
 }

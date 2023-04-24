@@ -1,6 +1,5 @@
 package andrewafony.thesis.application.feature_deadlines.presentation
 
-import andrewafony.thesis.application.R
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentDeadlinesBinding
@@ -12,11 +11,6 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class FragmentDeadlines: BaseFragment<FragmentDeadlinesBinding>() {
 
@@ -28,7 +22,11 @@ class FragmentDeadlines: BaseFragment<FragmentDeadlinesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val deadlinesAdapter = DeadlinesAdapter(DeadlinesViewHolderFabric())
+        val deadlinesAdapter = DeadlinesAdapter(DeadlinesViewHolderFabric(
+            updateDoneState = { item ->
+                viewModel.updateDoneState(item)
+            }
+        ))
 
         viewModel.init(savedInstanceState == null)
 
