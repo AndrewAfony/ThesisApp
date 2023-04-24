@@ -31,7 +31,7 @@ class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = TestAdapter(this)
+        val adapter = DetailClassInfoTabAdapter(this)
         viewPager = binding.viewPager
         viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
@@ -49,7 +49,7 @@ class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
     }
 }
 
-class TestAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class DetailClassInfoTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 2
 

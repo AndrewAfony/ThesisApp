@@ -23,6 +23,10 @@
             android:id="@+id/fragmentDetailClassInfo"
             android:name="andrewafony.thesis.application.feature_home.presentation.FragmentDetailClassInfo"
             android:label="FragmentDetailClassInfo" />
+        <fragment
+            android:id="@+id/fragmentProfile"
+            android:name="andrewafony.thesis.application.feature_home.presentation.profile.FragmentProfile"
+            android:label="FragmentProfile" />
     </navigation>
     <navigation
         android:id="@+id/search"

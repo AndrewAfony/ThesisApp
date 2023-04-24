@@ -45,6 +45,11 @@ interface Screen {
             get() = R.id.fragmentHome
     }
 
+    object UserProfile : Screen {
+        override val fragment: Int
+            get() = R.id.fragmentProfile
+    }
+
 //    object Search : Screen {
 //        override val fragment: Int
 //            get() = FragmentSearch::class.java

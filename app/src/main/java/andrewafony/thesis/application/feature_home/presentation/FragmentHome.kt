@@ -39,6 +39,10 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             mainViewModel.navigate(Navigation.Open(Screen.Notifications))
         }
 
+        binding.userPhoto.setOnClickListener {
+            mainViewModel.navigate(Navigation.Open(Screen.UserProfile))
+        }
+
         val timetableAdapter = TimetableAdapter(TimetableViewHolderFabric(object : TimetableClickHandler {
 
             // todo (вынести в отдельный класс)
