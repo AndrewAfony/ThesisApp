@@ -1,6 +1,5 @@
 package andrewafony.thesis.application
 
-import andrewafony.thesis.application.core.BaseItem
 import andrewafony.thesis.application.core.Communication
 import andrewafony.thesis.application.core.Dispatchers
 import andrewafony.thesis.application.feature_home.domain.TimetableInteractor
