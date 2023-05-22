@@ -8,6 +8,7 @@ import andrewafony.thesis.application.feature_deadlines.data.local.DeadlinesDao
 import andrewafony.thesis.application.feature_deadlines.domain.DeadlinesInteractor
 import andrewafony.thesis.application.feature_deadlines.presentation.DeadlinesCommunication
 import andrewafony.thesis.application.feature_deadlines.presentation.DeadlinesViewModel
+import andrewafony.thesis.application.feature_deadlines.presentation.DisciplineDeadlinesCommunication
 import andrewafony.thesis.application.feature_deadlines.presentation.FilterCommunication
 import androidx.lifecycle.ViewModel
 
@@ -26,7 +27,8 @@ class DeadlinesComponent(
             ),
             dispatchers = dispatchers,
             deadlinesCommunication = DeadlinesCommunication.Base(),
-            filterCommunication = FilterCommunication.Base()
+            filterCommunication = FilterCommunication.Base(),
+            disciplineDeadlines = DisciplineDeadlinesCommunication.Base()
         ) as T
     }
 }

@@ -9,6 +9,8 @@ interface DeadlinesCacheDataSource {
 
     suspend fun getDeadline(deadlineId: Int): DeadlineItem
 
+    suspend fun deadlinesByDiscipline(discipline: String): List<DeadlineItem>
+
     suspend fun addDeadline(deadline: DeadlineItem)
 
     suspend fun deleteDeadline(deadline: DeadlineItem)
@@ -20,6 +22,8 @@ interface DeadlinesCacheDataSource {
     ) : DeadlinesCacheDataSource {
 
         override fun getDeadlines(): Flow<List<DeadlineItem>> = dao.allDeadlines()
+
+        override suspend fun deadlinesByDiscipline(discipline: String): List<DeadlineItem> = dao.deadlinesByDiscipline(discipline)
 
         override suspend fun getDeadline(deadlineId: Int): DeadlineItem = dao.deadline(deadlineId)
 

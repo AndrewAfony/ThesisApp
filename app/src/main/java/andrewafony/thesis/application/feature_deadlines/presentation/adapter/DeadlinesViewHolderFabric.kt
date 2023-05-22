@@ -76,6 +76,7 @@ class DeadlineViewHolder(
                 imageDeadlineDate.visibility = View.VISIBLE
             }
 
+            buttonIsDone.isChecked = data.isDone
             buttonIsDone.setOnCheckedChangeListener { buttonView, isChecked ->
                 updateDoneState(data.copy(isDone = isChecked))
             }

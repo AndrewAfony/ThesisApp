@@ -13,6 +13,10 @@ class BaseDeadlinesRepository(
         return cacheDataSource.getDeadlines()
     }
 
+    override suspend fun deadlinesByDiscipline(discipline: String): List<DeadlineItem> {
+        return cacheDataSource.deadlinesByDiscipline(discipline)
+    }
+
     override suspend fun getDeadline(deadlineId: Int): DeadlineItem {
         return cacheDataSource.getDeadline(deadlineId)
     }

@@ -10,6 +10,9 @@ interface DeadlinesDao {
     @Query("SELECT * FROM deadlines")
     fun allDeadlines() : Flow<List<DeadlineItem>>
 
+    @Query("SELECT * FROM deadlines WHERE discipline = :discipline")
+    suspend fun deadlinesByDiscipline(discipline: String): List<DeadlineItem>
+
     @Query("SELECT * FROM deadlines WHERE id = :deadlineId")
     suspend fun deadline(deadlineId: Int) : DeadlineItem
 

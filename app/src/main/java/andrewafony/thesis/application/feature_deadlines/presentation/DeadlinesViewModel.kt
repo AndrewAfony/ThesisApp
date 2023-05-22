@@ -16,6 +16,7 @@ class DeadlinesViewModel(
     private val interactor: DeadlinesInteractor,
     private val dispatchers: Dispatchers,
     private val deadlinesCommunication: DeadlinesCommunication,
+    private val disciplineDeadlines: DisciplineDeadlinesCommunication,
     private val filterCommunication: FilterCommunication,
     private val mapperToDatabaseEntity: DeadlineItemUi.Mapper.ToDatabaseEntity = DeadlineItemUi.Mapper.ToDatabaseEntity()
 ): ViewModel() {
@@ -43,6 +44,15 @@ class DeadlinesViewModel(
         }
     }
 
+    fun deadlinesByDiscipline(discipline: String) {
+        dispatchers.launchBackground(viewModelScope) {
+            val deadlines = interactor.deadlinesByDiscipline(discipline)
+            dispatchers.launchUi(this) {
+                disciplineDeadlines.map(deadlines)
+            }
+        }
+    }
+
     fun filterDeadlines() {
         val value = filterCommunication.value ?: false
         filterCommunication.map(!value)
@@ -59,9 +69,18 @@ class DeadlinesViewModel(
         deadlinesCommunication.observe(owner, observer)
     }
 
+    fun observeDisciplineDeadlines(owner: LifecycleOwner, observer: Observer<List<DeadlineItemUi>>) {
+        disciplineDeadlines.observe(owner, observer)
+    }
+
     fun observeFilterByDone(owner: LifecycleOwner, observer: Observer<Boolean>) {
         filterCommunication.observe(owner, observer)
     }
+}
+
+interface DisciplineDeadlinesCommunication: Communication.Mutable<List<DeadlineItemUi>>  {
+
+    class Base : Communication.Ui<List<DeadlineItemUi>>() ,DisciplineDeadlinesCommunication
 }
 
 interface DeadlinesCommunication : Communication.Mutable<List<DeadlineItemUi>> {

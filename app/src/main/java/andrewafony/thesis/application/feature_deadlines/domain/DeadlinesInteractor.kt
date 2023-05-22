@@ -1,13 +1,14 @@
 package andrewafony.thesis.application.feature_deadlines.domain
 
-import andrewafony.thesis.application.core.Dispatchers
 import andrewafony.thesis.application.core.DispatchersName
 import andrewafony.thesis.application.feature_deadlines.presentation.DeadlineItemUi
 import kotlinx.coroutines.flow.*
 
 interface DeadlinesInteractor {
 
-    suspend fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>>
+    fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>>
+
+    suspend fun deadlinesByDiscipline(discipline: String) : List<DeadlineItemUi>
 
     suspend fun getDeadline(deadlineId: Int): DeadlineItemUi
 
@@ -23,7 +24,7 @@ interface DeadlinesInteractor {
         private val dispatchers: DispatchersName
     ) : DeadlinesInteractor {
 
-        override suspend fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>> =
+        override fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>> =
             // todo (return map<Date, List<DeadlineItemUi>>)
             repository
                 .getDeadlines()
@@ -37,6 +38,10 @@ interface DeadlinesInteractor {
                         }
                 }
                 .flowOn(dispatchers.backgroundName)
+
+        override suspend fun deadlinesByDiscipline(discipline: String): List<DeadlineItemUi> {
+            return repository.deadlinesByDiscipline(discipline).map { it.map(mapperToUi) }
+        }
 
         override suspend fun getDeadline(deadlineId: Int): DeadlineItemUi {
             val result = repository.getDeadline(deadlineId)

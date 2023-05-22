@@ -6,15 +6,20 @@ import andrewafony.thesis.application.core.BaseFragment
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoBinding
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoTabDeadlinesBinding
 import andrewafony.thesis.application.databinding.FragmentDetailClassInfoTabInfoBinding
+import andrewafony.thesis.application.feature_deadlines.presentation.DeadlinesViewModel
+import andrewafony.thesis.application.feature_deadlines.presentation.adapter.DeadlinesAdapter
+import andrewafony.thesis.application.feature_deadlines.presentation.adapter.DeadlinesViewHolderFabric
 import andrewafony.thesis.application.feature_home.presentation.professor_info.BottomSheetFragmentProfessorInfo
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -62,6 +67,7 @@ class DetailClassInfoTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragm
 class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoTabInfoBinding>() {
 
     private val viewModel by activityViewModels<HomeViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
+    private val deadlinesViewModel by activityViewModels<DeadlinesViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
 
     override val bindingInflater: (LayoutInflater) -> FragmentDetailClassInfoTabInfoBinding
         get() = FragmentDetailClassInfoTabInfoBinding::inflate
@@ -78,8 +84,7 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoTabI
                     professorPhoto.visibility = View.INVISIBLE
                     professorName.visibility = View.INVISIBLE
                     professorPosition.visibility = View.INVISIBLE
-                }
-                else {
+                } else {
                     shimmerHolder.visibility = View.GONE
                     shimmerHolder.stopShimmer()
                     professorPhoto.visibility = View.VISIBLE
@@ -100,13 +105,15 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoTabI
         }
         viewModel.observeClassInfo(this) { classInfo ->
             viewModel.loadProfessorInfo(classInfo.employee.info)
+            deadlinesViewModel.deadlinesByDiscipline(classInfo.name)
             binding.run {
                 classTitle.text = classInfo.name
                 classType.text = classInfo.type.replaceFirstChar { it.uppercase() }
                 if (classInfo.link.isBlank()) {
                     classPlace.text = classInfo.placeName
                     placeHolder.setOnClickListener {
-                        val geo = Uri.parse("geo:${classInfo.place.latitude},${classInfo.place.longitude}?z=15")
+                        val geo =
+                            Uri.parse("geo:${classInfo.place.latitude},${classInfo.place.longitude}?z=15")
                         val mapIntent = Intent(Intent.ACTION_VIEW, geo)
                         try {
                             startActivity(mapIntent)
@@ -122,26 +129,44 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoTabI
                         try {
                             startActivity(intent)
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Error link: ${classInfo.link}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,
+                                "Error link: ${classInfo.link}",
+                                Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
-                classTime.text = "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
+                classTime.text =
+                    "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
                 professorCard.setOnClickListener {
-                    BottomSheetFragmentProfessorInfo.newInstance().show(childFragmentManager, "professor_info")
+                    BottomSheetFragmentProfessorInfo.newInstance()
+                        .show(childFragmentManager, "professor_info")
                 }
             }
         }
     }
 }
 
-class FragmentDetailClassInfoTabDeadlines : BaseFragment<FragmentDetailClassInfoTabDeadlinesBinding>() {
+class FragmentDetailClassInfoTabDeadlines :
+    BaseFragment<FragmentDetailClassInfoTabDeadlinesBinding>() {
+
+    private val deadlinesViewModel by activityViewModels<DeadlinesViewModel>(factoryProducer = { (activity as ViewModelFactoryProvider).provide() })
+
+    private lateinit var deadlinesAdapter: DeadlinesAdapter
 
     override val bindingInflater: (LayoutInflater) -> FragmentDetailClassInfoTabDeadlinesBinding
         get() = FragmentDetailClassInfoTabDeadlinesBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // todo (получать дедлайны из сети и локальные, связанные с дисциплинной)
+
+        deadlinesAdapter = DeadlinesAdapter(DeadlinesViewHolderFabric { deadlinesViewModel.updateDoneState(it) })
+
+        binding.rvClassDeadlines.adapter = deadlinesAdapter
+        binding.rvClassDeadlines.layoutManager = LinearLayoutManager(requireContext())
+
+        deadlinesViewModel.observeDisciplineDeadlines(this) {
+            Log.d("MyHelper", "onViewCreated: $it")
+            deadlinesAdapter.map(it)
+        }
     }
 }

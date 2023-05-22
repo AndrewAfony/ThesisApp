@@ -6,6 +6,8 @@ interface DeadlinesRepository {
 
     fun getDeadlines() : Flow<List<DeadlineItem>>
 
+    suspend fun deadlinesByDiscipline(discipline: String) : List<DeadlineItem>
+
     suspend fun getDeadline(deadlineId: Int) : DeadlineItem
 
     suspend fun addDeadline(deadlineItem: DeadlineItem)
