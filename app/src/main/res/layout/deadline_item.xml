@@ -8,24 +8,26 @@
 
     <TextView
         android:id="@+id/text_deadline"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textColor="@color/black"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_is_done"
         app:layout_constraintTop_toTopOf="@+id/button_is_done"
-        tools:text="Deadline text" />
+        tools:text="Make a presentation for the thesis" />
 
     <TextView
         android:id="@+id/text_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_deadline"
         app:layout_constraintTop_toBottomOf="@+id/text_deadline"
-        tools:text="Description" />
+        tools:text="Goals, objectives, relevance and current " />
 
     <TextView
         android:id="@+id/text_deadline_date"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Application</string>
+    <string name="app_name" translatable="false">Application</string>
     <string name="timetable">Timetable</string>
     <string name="notifications">Notifications</string>
 
@@ -10,9 +10,24 @@
     <string name="deadlines">Deadlines</string>
 
     <!-- Timetable Item -->
-    <string name="offline">Offline</string>
-    <string name="online">Online</string>
+    <string name="offline" translatable="false">Offline</string>
+    <string name="online" translatable="false">Online</string>
 
     <!-- Timetable -->
     <string name="there_is_no_timetable">There is no timetable</string>
+
+    <!-- User profile -->
+    <string name="info">Info</string>
+    <string name="options">Options</string>
+    <string name="settings">Settings</string>
+
+    <string name="hello">Hello, </string>
+    <string name="grades">Grades</string>
+    <string name="ratings">Ratings</string>
+    <string name="system_settings">System settings</string>
+    <string name="about_the_app">About the app</string>
+    <string name="log_out">Log out</string>
+    <string name="exams">Exams</string>
+    <string name="edu_certificate">Ordering a study certificate</string>
+    <string name="visitations">Visitations</string>
 </resources>

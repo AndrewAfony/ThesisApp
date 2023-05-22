@@ -47,5 +47,4 @@ interface Communication {
         override val value: T?
             get() = liveData.value
     }
-
 }

@@ -75,7 +75,6 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
         binding.rvTimetable.apply {
             adapter = timetableAdapter
             layoutManager = LinearLayoutManager(context)
-//            addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         }
 
         mainViewModel.observeTimetable(this) {

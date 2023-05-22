@@ -25,7 +25,7 @@
             android:label="FragmentDetailClassInfo" />
         <fragment
             android:id="@+id/fragmentProfile"
-            android:name="andrewafony.thesis.application.feature_home.presentation.profile.FragmentProfile"
+            android:name="andrewafony.thesis.application.feature_profile.presentation.FragmentProfile"
             android:label="FragmentProfile" />
     </navigation>
     <navigation

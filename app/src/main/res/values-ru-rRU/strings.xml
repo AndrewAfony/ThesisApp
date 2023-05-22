@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Application</string>
+    <string name="timetable">Расписание</string>
+    <string name="notifications">Уведомления</string>
+    <string name="home">Главная</string>
+    <string name="search">Поиск</string>
+    <string name="news">Новости</string>
+    <string name="deadlines">Напоминания</string>
+    <string name="there_is_no_timetable">Нет занятий</string>
+    <string name="info">Инфо</string>
+    <string name="options">Опции</string>
+    <string name="settings">Настройки</string>
+    <string name="hello">Здравствуйте,</string>
+</resources>

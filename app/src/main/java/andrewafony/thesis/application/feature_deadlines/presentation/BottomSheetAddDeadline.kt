@@ -128,10 +128,8 @@ class DisciplinesPopupMenu(
 
     init {
         // todo (load disciplines)
-        menu.menu.add("Test")
-        menu.menu.add("Test 1")
-        menu.menu.add("Test Long Name Discipline Discipline Discipline")
-        menu.menu.add("No disciplines").isEnabled = false
+        menu.menu.add("Thesis")
+//        menu.menu.add("No disciplines").isEnabled = false
     }
 
     fun show() {

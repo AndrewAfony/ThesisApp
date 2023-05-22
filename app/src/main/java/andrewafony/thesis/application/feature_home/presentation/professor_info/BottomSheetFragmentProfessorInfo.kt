@@ -62,7 +62,6 @@ class BottomSheetFragmentProfessorInfo: BaseBottomSheetFragment<FragmentProfesso
                     Intent(Intent.ACTION_DIAL, Uri.parse("tel:${info.phone_number}")).also {
                         startActivity(it)
                     }
-                    Toast.makeText(context, "Test", Toast.LENGTH_SHORT).show()
                 }
             }
         }
