@@ -72,7 +72,7 @@ class BottomSheetFragmentAddDeadline :
 
         binding.buttonCreate.setOnClickListener {
             val discipline =
-                binding.textDiscipline.text.toString()
+                if (binding.textDiscipline.text.contains("Discipline")) null else binding.textDiscipline.text.toString()
             val date = if (binding.textDate.text.contains("No date")) null
             else SimpleDateFormat("dd/MM/yyyy HH:mm").parse(binding.textDate.text.toString()) // todo (parse all cases)
             val description =

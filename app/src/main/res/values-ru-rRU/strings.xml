@@ -12,4 +12,13 @@
     <string name="options">Опции</string>
     <string name="settings">Настройки</string>
     <string name="hello">Здравствуйте,</string>
+    <string name="grades">Оценки</string>
+    <string name="ratings">Рейтинг</string>
+    <string name="system_settings">Системные настройки</string>
+    <string name="about_the_app">О приложии</string>
+    <string name="log_out">Выйти</string>
+    <string name="exams">Экзамены</string>
+    <string name="edu_certificate">Заказать справку</string>
+    <string name="visitations">Посещения</string>
+    <string name="show_completed_deadlines">Показать завершенные напоминания</string>
 </resources>

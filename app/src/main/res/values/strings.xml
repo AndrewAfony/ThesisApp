@@ -30,4 +30,5 @@
     <string name="exams">Exams</string>
     <string name="edu_certificate">Ordering a study certificate</string>
     <string name="visitations">Visitations</string>
+    <string name="show_completed_deadlines">Show completed deadlines</string>
 </resources>

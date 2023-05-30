@@ -18,7 +18,7 @@
             android:background="@android:color/background_light"
             app:layout_scrollFlags="scroll|enterAlways"
             app:menu="@menu/deadlines_main_menu"
-            app:title="Deadlines" />
+            app:title="@string/deadlines" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
