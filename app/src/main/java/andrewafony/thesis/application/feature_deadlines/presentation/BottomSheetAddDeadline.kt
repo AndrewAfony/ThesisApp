@@ -1,5 +1,6 @@
 package andrewafony.thesis.application.feature_deadlines.presentation
 
+import andrewafony.thesis.application.R
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseBottomSheetFragment
 import andrewafony.thesis.application.databinding.FragmentAddDeadlineBottomSheetBinding
@@ -59,10 +60,10 @@ class BottomSheetFragmentAddDeadline :
 
         binding.buttonChooseDate.setOnClickListener {
             val date =
-                if (binding.textDate.text.contains("No date")) null else binding.textDate.text.toString()
+                if (binding.textDate.text.contains(getString(R.string.no_date))) null else binding.textDate.text.toString()
                     .substringBefore(" ")
             val time =
-                if (binding.textDate.text.contains("No date")) null else binding.textDate.text.toString()
+                if (binding.textDate.text.contains(getString(R.string.no_date))) null else binding.textDate.text.toString()
                     .substringAfter(" ")
             BottomSheetDateAndTimePick.newInstance(
                 date = date,
@@ -72,9 +73,9 @@ class BottomSheetFragmentAddDeadline :
 
         binding.buttonCreate.setOnClickListener {
             val discipline =
-                if (binding.textDiscipline.text.contains("Discipline")) null else binding.textDiscipline.text.toString()
+                if (binding.textDiscipline.text.contains(getString(R.string.discipline))) null else binding.textDiscipline.text.toString()
             val date =
-                if (binding.textDate.text.contains("No date"))
+                if (binding.textDate.text.contains(getString(R.string.no_date)))
                     null
                 else {
                     if (!binding.textDate.text.contains(" ")) {
@@ -110,7 +111,7 @@ class BottomSheetFragmentAddDeadline :
             val time = bundle.getString("time")
 
             if (date?.contains("Choose") == true) {
-                binding.textDate.text = "No date"
+                binding.textDate.text = getString(R.string.no_date)
             } else if (time?.contains("Choose") == true) {
                 binding.textDate.text = "$date"
             } else {

@@ -13,18 +13,18 @@ class App: Application(), ViewModelFactoryProvider {
     override fun onCreate() {
         super.onCreate()
 
-//        val database = Room.databaseBuilder(
-//            this,
-//            DeadlinesDatabase::class.java,
-//            "deadlines_db"
-//        ).build()
-
-        val testDatabase = Room.inMemoryDatabaseBuilder(
+        val database = Room.databaseBuilder(
             this,
-            DeadlinesDatabase::class.java
+            DeadlinesDatabase::class.java,
+            "deadlines_db"
         ).build()
 
-        dependencyContainer = DependencyContainer.Base(database = testDatabase)
+//        val testDatabase = Room.inMemoryDatabaseBuilder(
+//            this,
+//            DeadlinesDatabase::class.java
+//        ).build()
+
+        dependencyContainer = DependencyContainer.Base(database = database)
     }
 
     override fun provide(): ViewModelFactory = ViewModelFactory(dependencyContainer)

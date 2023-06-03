@@ -41,4 +41,11 @@
     <string name="call">Call</string>
     <string name="phone_number">Phone number</string>
     <string name="day_of_birth">Day of birth</string>
+    <string name="choose_date">Choose date</string>
+    <string name="choose_time">Choose time</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="next_week">Next week</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
 </resources>

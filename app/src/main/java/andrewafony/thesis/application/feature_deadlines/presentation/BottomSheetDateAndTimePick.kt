@@ -1,5 +1,6 @@
 package andrewafony.thesis.application.feature_deadlines.presentation
 
+import andrewafony.thesis.application.R
 import andrewafony.thesis.application.ViewModelFactoryProvider
 import andrewafony.thesis.application.core.BaseBottomSheetFragment
 import andrewafony.thesis.application.databinding.FragmentDeadlineDatePickerBinding
@@ -92,13 +93,13 @@ class BottomSheetDateAndTimePick : BaseBottomSheetFragment<FragmentDeadlineDateP
                 binding.textDate.text = nextWeek
             }
             buttonNoDate.setOnClickListener {
-                binding.textDate.text = "Choose date"
-                binding.textTime.text = "Choose time"
+                binding.textDate.text = getString(R.string.choose_date)
+                binding.textTime.text = getString(R.string.choose_time)
             }
 
             binding.run {
-                textDate.text = arguments?.getString("date") ?: "Choose date"
-                textTime.text = arguments?.getString("time") ?: "Choose time"
+                textDate.text = arguments?.getString("date") ?: getString(R.string.choose_date)
+                textTime.text = arguments?.getString("time") ?: getString(R.string.choose_time)
             }
         }
     }
