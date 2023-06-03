@@ -35,7 +35,7 @@ interface DependencyContainer {
 
         override fun <T> component(clazz: Class<T>): Component = when (clazz) {
             MainViewModel::class.java -> MainComponent()
-            HomeViewModel::class.java -> HomeComponent()
+            HomeViewModel::class.java -> HomeComponent(database.dao())
             DeadlinesViewModel::class.java -> DeadlinesComponent(database.dao())
             else -> dependencyContainer.component(clazz)
         }

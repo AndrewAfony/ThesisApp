@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/user_image_home"
-            app:srcCompat="@drawable/user" />
+            app:srcCompat="@drawable/user_placeholder" />
 
         <TextView
             android:id="@+id/greeting"
@@ -52,7 +52,7 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/user_photo"
             app:layout_constraintStart_toEndOf="@+id/user_photo"
-            android:text="Имя Фамилия" />
+            android:text="Андрей Афанасьев" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/notification"
@@ -99,48 +99,49 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/deadline_title"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="8dp"
                     android:autoSizeTextType="uniform"
                     android:elevation="4dp"
-                    android:text="Make a presentation for the thesis"
+                    tools:text="Make a presentation for the thesis"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView6"
+                    app:layout_constraintBottom_toTopOf="@+id/deadline_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/deadline_description"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginBottom="8dp"
                     android:autoSizeTextType="uniform"
-                    android:text="Goals, objectives, relevance and current results"
+                    tools:text="Goals, objectives, relevance and current results"
                     app:layout_constraintBottom_toTopOf="@+id/materialDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/deadline_title" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/materialDivider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/deadline_title" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/deadline_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="3 days left"
+                    tools:text="3 days left"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +166,39 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="42sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="активных заданий"
+                    android:textSize="16sp"
+                    android:autoSizeTextType="uniform"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
@@ -186,35 +219,48 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/next_class_title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Next class"
+                    android:layout_marginEnd="16dp"
+                    android:autoSizeTextType="uniform"
+                    android:text="@string/next_class"
+                    tools:text="Слудующее занятие"
+                    android:lines="1"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Discipline name"
+                    android:id="@+id/firstClassUntil"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/firstClassUntilTime"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/next_class_title"
+                    tools:text="Математический анализ" />
 
                 <TextView
+                    android:id="@+id/firstClassUntilTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="In 2 hours"
+                    tools:text="In 2 hours"
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -236,7 +282,38 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/cardView" />
+            app:layout_constraintTop_toTopOf="@+id/cardView" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="42sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="ближайших экзаменов"
+                    android:textAlignment="center"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -266,9 +343,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.0"
-        android:background="@color/black" />
+        android:background="@color/black"
+        app:layout_anchor="@+id/constraintLayout"
+        app:layout_anchorGravity="center" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_sheet_timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

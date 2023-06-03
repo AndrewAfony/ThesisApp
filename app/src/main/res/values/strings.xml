@@ -31,4 +31,14 @@
     <string name="edu_certificate">Ordering a study certificate</string>
     <string name="visitations">Visitations</string>
     <string name="show_completed_deadlines">Show completed deadlines</string>
+    <string name="next_class">Next class</string>
+    <string name="discipline">Discipline</string>
+    <string name="e_g_do_homework">e.g. Do homework</string>
+    <string name="description">Description</string>
+    <string name="no_date">No date</string>
+    <string name="course_information">Course information</string>
+    <string name="message">Message</string>
+    <string name="call">Call</string>
+    <string name="phone_number">Phone number</string>
+    <string name="day_of_birth">Day of birth</string>
 </resources>

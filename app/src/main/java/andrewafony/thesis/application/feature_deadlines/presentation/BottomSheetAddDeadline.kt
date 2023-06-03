@@ -73,8 +73,15 @@ class BottomSheetFragmentAddDeadline :
         binding.buttonCreate.setOnClickListener {
             val discipline =
                 if (binding.textDiscipline.text.contains("Discipline")) null else binding.textDiscipline.text.toString()
-            val date = if (binding.textDate.text.contains("No date")) null
-            else SimpleDateFormat("dd/MM/yyyy HH:mm").parse(binding.textDate.text.toString()) // todo (parse all cases)
+            val date =
+                if (binding.textDate.text.contains("No date"))
+                    null
+                else {
+                    if (!binding.textDate.text.contains(" ")) {
+                        SimpleDateFormat("dd/MM/yyyy").parse(binding.textDate.text.toString())
+                    } else
+                        SimpleDateFormat("dd/MM/yyyy HH:mm").parse(binding.textDate.text.toString())
+                }
             val description =
                 if (binding.deadlineDescriptionEditText.text.isNullOrEmpty()) null else binding.deadlineDescriptionEditText.text.toString()
             viewModel.addDeadline(
@@ -127,10 +134,11 @@ class DisciplinesPopupMenu(
     private val menu by lazy { PopupMenu(context, anchorView) }
 
     init {
-        menu.menu.add("Discipline name")
         // todo (load disciplines)
-        menu.menu.add("Thesis")
-        menu.menu.add("Discipline name 2")
+        menu.menu.add("Управление данными")
+        menu.menu.add("Экономика")
+        menu.menu.add("Математический анализ")
+        menu.menu.add("Программирование на Java")
 //        menu.menu.add("No disciplines").isEnabled = false
     }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Application</string>
     <string name="timetable">Расписание</string>
     <string name="notifications">Уведомления</string>
     <string name="home">Главная</string>
@@ -21,4 +20,14 @@
     <string name="edu_certificate">Заказать справку</string>
     <string name="visitations">Посещения</string>
     <string name="show_completed_deadlines">Показать завершенные напоминания</string>
+    <string name="next_class">Следующее занятие</string>
+    <string name="discipline">Дисциплина</string>
+    <string name="e_g_do_homework">Например, сделать ДЗ</string>
+    <string name="description">Описание</string>
+    <string name="no_date">Нет даты</string>
+    <string name="course_information">Информация о дисциплине</string>
+    <string name="message">Сообщение</string>
+    <string name="call">Звонок</string>
+    <string name="phone_number">Номер</string>
+    <string name="day_of_birth">Дата рождения</string>
 </resources>

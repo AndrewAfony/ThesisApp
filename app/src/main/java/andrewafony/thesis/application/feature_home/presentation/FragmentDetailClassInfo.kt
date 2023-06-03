@@ -40,8 +40,8 @@ class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
         viewPager = binding.viewPager
         viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
-            if (position == 0) tab.text = "Info"
-            else tab.text = "Deadlines"
+            if (position == 0) tab.text = "Инфо"
+            else tab.text = "Задачи"
         }.attach()
 
         binding.toolbar.setNavigationOnClickListener {
@@ -49,7 +49,7 @@ class FragmentDetailClassInfo : BaseFragment<FragmentDetailClassInfoBinding>() {
         }
 
         viewModel.observeClassInfo(this) {
-            binding.toolbar.title = "${it.order} class"
+            binding.toolbar.title = "${it.order} занятие"
         }
     }
 }
@@ -136,7 +136,7 @@ class FragmentDetailClassInfoFirstTab : BaseFragment<FragmentDetailClassInfoTabI
                     }
                 }
                 classTime.text =
-                    "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} from ${classInfo.startTime} to ${classInfo.endTime}"
+                    "${classInfo.dateWeekDay}, ${classInfo.dateDay} ${classInfo.dateMonth} с ${classInfo.startTime} до ${classInfo.endTime}"
                 professorCard.setOnClickListener {
                     BottomSheetFragmentProfessorInfo.newInstance()
                         .show(childFragmentManager, "professor_info")
@@ -165,7 +165,6 @@ class FragmentDetailClassInfoTabDeadlines :
         binding.rvClassDeadlines.layoutManager = LinearLayoutManager(requireContext())
 
         deadlinesViewModel.observeDisciplineDeadlines(this) {
-            Log.d("MyHelper", "onViewCreated: $it")
             deadlinesAdapter.map(it)
         }
     }

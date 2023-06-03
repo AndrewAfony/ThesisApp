@@ -8,6 +8,8 @@ interface TimetableInteractor : ProfessorInfoInteractor {
 
     suspend fun getAllClasses() : List<TimetableItemUi>
 
+    suspend fun getLastClass() : TimetableItemDomain?
+
     suspend fun getClassInfo(classId: String): TimetableItemUi
 
     class Base(
@@ -18,6 +20,10 @@ interface TimetableInteractor : ProfessorInfoInteractor {
         override suspend fun getAllClasses(): List<TimetableItemUi> {
             val result = repository.timetable()
             return result.map { it.map(mapperToUi) }
+        }
+
+        override suspend fun getLastClass(): TimetableItemDomain? {
+            return repository.timetable().firstOrNull()
         }
 
         override suspend fun getClassInfo(classId: String): TimetableItemUi {

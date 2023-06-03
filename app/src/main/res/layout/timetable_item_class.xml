@@ -107,7 +107,7 @@
             android:id="@+id/chip_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="@color/blue_dodger"
+            app:chipBackgroundColor="@color/blue_dodger_light"
             tools:text="Seminar" />
 
     </com.google.android.material.chip.ChipGroup>

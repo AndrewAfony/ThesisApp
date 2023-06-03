@@ -25,7 +25,6 @@ interface DeadlinesInteractor {
     ) : DeadlinesInteractor {
 
         override fun getDeadlines(filterByDone: Boolean): Flow<List<DeadlineItemUi>> =
-            // todo (return map<Date, List<DeadlineItemUi>>)
             repository
                 .getDeadlines()
                 .map { deadlines ->

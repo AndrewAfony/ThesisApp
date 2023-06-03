@@ -12,6 +12,7 @@ import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.firestore.GeoPoint
+import java.text.SimpleDateFormat
 
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
@@ -34,6 +36,8 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.loadLastDeadlineInfo()
 
         binding.notification.setOnClickListener {
             mainViewModel.navigate(Navigation.Open(Screen.Notifications))
@@ -81,8 +85,13 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             if (it.isEmpty()) binding.emptyTimetableText.visibility = View.VISIBLE
             binding.timetableLoadingAnimation.cancelAnimation()
             binding.timetableLoadingAnimation.visibility = View.GONE
+            viewModel.lastClassTime()
             timetableAdapter.map(it)
         }
+
+        viewModel.observeLastClassInfo(this) { it.map(binding) }
+
+        viewModel.observeLastDeadlineInfo(this) { it.map(binding) }
 
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetTimetable)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
