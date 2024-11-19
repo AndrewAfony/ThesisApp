@@ -24,8 +24,7 @@ interface FirestoreService {
 
     class Base : FirestoreService {
 
-        private val group =
-            "19_bi_1" //todo(получать группу в зависимости от авторизованного пользователя)
+        private val group = "19_bi_1"
 
         private val database = Firebase.firestore
         private val classes = database.collection("classes")
